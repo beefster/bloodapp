@@ -9,6 +9,11 @@ export const globalStyles = StyleSheet.create({
       justifyContent: 'center',
       
     },
+    container1: {
+      flex: 1,
+      padding: 10,
+      
+    },
     greeting: {
       fontSize: 40,
       color: 'green',
@@ -19,11 +24,12 @@ export const globalStyles = StyleSheet.create({
   
     input:{
       borderWidth: 1,
+      borderRadius: 6,
       borderColor: '#777',
       padding:8,
       margin: 10,
       width: '80%',
-      top: '-5%',
+      top: '-30%',
     },
   
     login:{
@@ -53,6 +59,28 @@ export const globalStyles = StyleSheet.create({
       alignItems:"center",
       justifyContent:"center",
     },
+    signupinput: {
+      borderWidth: 1,
+      borderColor: '#ddd',
+      padding: 5,
+      fontSize: 18,
+      borderRadius: 6,
+      marginBottom: 7,
+
+    },
+    nameRow: {
+      borderWidth: 1,
+      width: '48%',
+      borderColor: '#ddd',
+      padding: 5,
+      fontSize: 18,
+      borderRadius: 6,
+      marginBottom: 7,
+      marginRight: 12,
+
+    },
+    
+    
     
   });
   
