@@ -7,11 +7,13 @@ export const globalStyles = StyleSheet.create({
       backgroundColor:  '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      flexDirection: 'column',
       
     },
     container1: {
       flex: 1,
       padding: 10,
+      marginTop: 5,
       
     },
     greeting: {
@@ -73,13 +75,26 @@ export const globalStyles = StyleSheet.create({
       width: '48%',
       borderColor: '#ddd',
       padding: 5,
-      fontSize: 18,
+      fontSize: 16,
       borderRadius: 6,
       marginBottom: 7,
       marginRight: 12,
 
     },
+    error: {
+      color: 'red',
+      fontWeight: 'bold',
+      marginBottom: 5,
+      marginTop: 5,
+    },
+    errorRow: {
+      color: 'red',
+      fontWeight: 'bold',
+      fontSize: 11,
+      width: "52%"
+    },
     
+
     
     
   });

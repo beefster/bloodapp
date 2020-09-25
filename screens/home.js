@@ -8,8 +8,9 @@ export default function Home({navigation}) {
     const handleSignup = () => {
         navigation.navigate('Signup');
     }
+    
     const [email, setEmail] = useState('');
-    const [password, setPass] = useState('');
+    const [pass, setPass] = useState('');
     return (
         <View style={globalStyles.container}>
           <View style = {globalStyles.container}>
