@@ -6,7 +6,21 @@ import { globalStyles } from '../styles/global';
 export default function Home({navigation}) {
 
     const handleSignup = () => {
-        navigation.navigate('Signup');
+      navigation.navigate('Signup');
+    }
+
+    const handleLogin = () => {
+      fetch('http://localhost:907/api/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+          'email':email,
+          'password':pass
+        })
+      }).then((response) => response.json()).then((json) => console.log(json));
     }
     
     const [email, setEmail] = useState('');
@@ -31,7 +45,7 @@ export default function Home({navigation}) {
               <Text >Forgot Password?</Text>
             </TouchableOpacity>
             <View style = {globalStyles.login}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handleLogin}>
               <Text style = {globalStyles.logintext}>LOG IN</Text>
               </TouchableOpacity>
             </View>
