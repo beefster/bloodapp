@@ -79,8 +79,19 @@ const handleSuccess = () => {
         Blood_type: '',User_type: '', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
         validationSchema={validForm}
         onSubmit={(values, actions) => {
-          actions.resetForm();
-          console.log(values);
+          console.log(JSON.stringify(values));
+          fetch('http://localhost:907/api/register', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type':'application/json'
+            },
+            body: JSON.stringify(values)
+         }).then((response) => response.json()).then((json) => {
+           console.log(json);
+           // display error, or login if success
+
+          });
         }}
       >
         {props => (
