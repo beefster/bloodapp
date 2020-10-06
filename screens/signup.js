@@ -4,6 +4,8 @@ import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import  { useState } from 'react';
 import * as yup from 'yup';
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 const validForm = yup.object({
@@ -53,13 +55,19 @@ const validForm = yup.object({
 
 
 
-export default function Signup() {
+export default function Signup({navigation}) {
  // const [blood, setBlood] = useState('');
+
+ const handleLogin = () => {
+  navigation.navigate('Login');
+}
+
 
   return (
 
     <ScrollView>
     <View style={globalStyles.container1}>
+    
       <Formik
         initialValues={{ First_name: '', Last_name: '', Address: '', City: '', State: '', Zip_code: '', Country: '', 
         Blood_type: '', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
@@ -223,7 +231,8 @@ export default function Signup() {
             <Text style={globalStyles.errorRow}>{props.touched.Confirm_password && props.errors.Confirm_password}</Text>
         
            
-            <Button color='blue' title="Submit" onPress={props.handleSubmit} /> 
+            <Button color='blue' title="Submit" onPress={props.handleSubmit} />
+            <Button color='green' title="Test Screen" onPress={handleLogin} /> 
           </View>
         )}
       </Formik> 
