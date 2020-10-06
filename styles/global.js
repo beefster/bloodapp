@@ -32,13 +32,13 @@ export const globalStyles = StyleSheet.create({
     greeting: {
       fontSize: 40,
       color: 'green',
-      top: '20%',
+      //top: '20%',
       
     },
     greeting1: {
-      fontSize: 30,
+      fontSize: 25,
       color: 'green',
-      top: '20%',
+      padding: 10,
       
     },
     searchScreen: {
@@ -57,7 +57,7 @@ export const globalStyles = StyleSheet.create({
       padding:8,
       margin: 10,
       width: '80%',
-      top: '-30%',
+      //top: '-30%',
     },
   
     login:{

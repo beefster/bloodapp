@@ -18,11 +18,11 @@ export default function Success({navigation}) {
        
        <View style={globalStyles.container}>
          
-         <Ionicons name="md-checkmark-circle" size={150} color="green" />
+         <Ionicons name="md-checkmark-circle" size={120} color="green" />
          <Text style = {globalStyles.greeting1}>Account created successfully!</Text>
-         <View style={globalStyles.container1}>
+        
          <Button color='green' title="Login" onPress={handleLogin} />
-         </View>
+         
          
 
        </View>
