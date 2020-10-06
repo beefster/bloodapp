@@ -38,6 +38,9 @@ const validForm = yup.object({
   Blood_type: yup.string()
     
     ,
+  User_type: yup.string()
+    
+    ,
   User_name: yup.string()
     .required()
     ,
@@ -61,6 +64,9 @@ export default function Signup({navigation}) {
  const handleLogin = () => {
   navigation.navigate('Login');
 }
+const handleSuccess = () => {
+  navigation.navigate('Success');
+}
 
 
   return (
@@ -70,7 +76,7 @@ export default function Signup({navigation}) {
     
       <Formik
         initialValues={{ First_name: '', Last_name: '', Address: '', City: '', State: '', Zip_code: '', Country: '', 
-        Blood_type: '', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
+        Blood_type: '',User_type: '', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
         validationSchema={validForm}
         onSubmit={(values, actions) => {
           actions.resetForm();
@@ -189,9 +195,24 @@ export default function Signup({navigation}) {
         </Picker>
         <Text style={globalStyles.errorRow}>{props.touched.Blood_type && props.errors.Blood_type}</Text>
 
+        <Text>User Type</Text>
+        <Picker
+          selectedValue={props.values.User_type}
+          style={{ height: 50,   padding: 10}}
+          //onValueChange={(bvalue) => setBlood(bvalue)}
+          onValueChange={props.handleChange('User_type')}
+          value = {props.values.User_type}
+          onBlur={props.handleBlur('User_typee')} 
+          >
+          <Picker.Item label="Donor" value="Donor" />
+          <Picker.Item label="Recipient" value="Recipient" />
+          
+          
+        </Picker>
+        <Text style={globalStyles.errorRow}>{props.touched.User_type && props.errors.User_type}</Text>
             <TextInput 
               style={globalStyles.signupinput}
-              placeholder='User Name'
+              placeholder='Username'
               onChangeText={props.handleChange('User_name')}
               value={props.values.User_name}
               onBlur={props.handleBlur('User_name')} 
@@ -233,6 +254,7 @@ export default function Signup({navigation}) {
            
             <Button color='blue' title="Submit" onPress={props.handleSubmit} />
             <Button color='green' title="Test Screen" onPress={handleLogin} /> 
+            <Button color='green' title="Success Screen" onPress={handleSuccess} />
           </View>
         )}
       </Formik> 

@@ -16,11 +16,37 @@ export const globalStyles = StyleSheet.create({
       marginTop: 5,
       
     },
+    container2: {
+      flex: 1,
+      padding: 10,
+      marginTop: 5,
+      
+    },
+    container3: {
+      flex: 1,
+      padding: 10,
+      marginTop: 5,
+      width: "80%"
+      
+    },
     greeting: {
       fontSize: 40,
       color: 'green',
-      position: 'absolute',
       top: '20%',
+      
+    },
+    greeting1: {
+      fontSize: 30,
+      color: 'green',
+      top: '20%',
+      
+    },
+    searchScreen: {
+      fontSize: 18,
+      color: 'green',
+      padding: 10,
+      marginTop: 5,
+      
       
     },
   

@@ -27,9 +27,9 @@ export default function Home({navigation}) {
     const [pass, setPass] = useState('');
     return (
         <View style={globalStyles.container}>
-          <View style = {globalStyles.container}>
+          
             <Text style = {globalStyles.greeting}>Welcome!</Text>
-          </View>
+          
           <TextInput
             style = {globalStyles.input}
             placeholder = "Email..."

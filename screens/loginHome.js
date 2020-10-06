@@ -15,8 +15,8 @@ export default function Home() {
    
        
        <View style={globalStyles.container1}>
-         <Text style = {globalStyles.greeting}>Welcome user name!</Text>
-         <Ionicons name="md-checkmark-circle" size={80} color="green" />
+         <Text style = {globalStyles.greeting}>Welcome username!</Text>
+        
 
        </View>
     
