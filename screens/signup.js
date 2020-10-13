@@ -89,8 +89,11 @@ const handleSuccess = () => {
             body: JSON.stringify(values)
          }).then((response) => response.json()).then((json) => {
            console.log(json);
-           navigation.navigate('Success');
-           // display error, or login if success
+           if(json.code == 200){
+             navigation.navigate('Success');
+           }else {
+             console.log(json);
+           }
 
           });
         }}

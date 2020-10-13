@@ -20,10 +20,25 @@ export default function Home({navigation}) {
           'email':email,
           'password':pass
         })
-      }).then((response) => response.json()).then((json) => {
-        console.log(json)
-        //navigation.navigate('Login');
+      }).then((response) => response.json()).then((responsejson) => {
+        if (responsejson.code == 200){
+          navigation.navigate('Home1');
+        } else {
+          console.log(responsejson)
+        }
       });
+    }
+
+    const handleSearchTest = () => {
+      fetch('http://localhost:907/api/search', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type':'application/json'
+        }
+      }).then((response) =>response.json()).then((responsejson) => {
+        console.log(responsejson);
+      })
     }
     
     const [email, setEmail] = useState('');
@@ -57,6 +72,15 @@ export default function Home({navigation}) {
               <Text style = {globalStyles.registertext}>SIGN UP </Text>
               </TouchableOpacity>
             </View>
+
+              {/* search test */}
+              <br /><br />
+            <View style = {globalStyles.registerview}>
+              <TouchableOpacity onPress={handleSearchTest} >
+              <Text style = {globalStyles.registertext}>SEARCH TEST</Text>
+              </TouchableOpacity>
+            </View>
+
         <StatusBar style="auto" />
       </View>
     );
