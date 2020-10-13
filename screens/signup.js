@@ -76,7 +76,7 @@ const handleSuccess = () => {
     
       <Formik
         initialValues={{ First_name: '', Last_name: '', Address: '', City: '', State: '', Zip_code: '', Country: '', 
-        Blood_type: '',User_type: '', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
+        Blood_type: 'A+',User_type: 'Donor', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
         validationSchema={validForm}
         onSubmit={(values, actions) => {
           console.log(JSON.stringify(values));
@@ -89,6 +89,7 @@ const handleSuccess = () => {
             body: JSON.stringify(values)
          }).then((response) => response.json()).then((json) => {
            console.log(json);
+           navigation.navigate('Success');
            // display error, or login if success
 
           });

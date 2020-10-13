@@ -21,7 +21,8 @@ export default function Home({navigation}) {
           'password':pass
         })
       }).then((response) => response.json()).then((json) => {
-        console.log(response)
+        console.log(json)
+        //navigation.navigate('Login');
       });
     }
     

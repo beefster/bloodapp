@@ -22,6 +22,26 @@ export const globalStyles = StyleSheet.create({
       marginTop: 5,
       
     },
+    resultsRow: {
+      flex: 1,
+      flexDirection: 'row',
+      padding: 5,
+      marginLeft: 10,
+      
+    },
+    resultsRowText: {
+      padding: 5,
+      color:'white'
+      
+    },
+
+    cardStyle: {
+      margin:5,
+      backgroundColor: 'green',
+      borderRadius: 10
+      
+    },
+    
     container3: {
       flex: 1,
       padding: 10,
@@ -119,6 +139,24 @@ export const globalStyles = StyleSheet.create({
       fontSize: 11,
       width: "52%"
     },
+
+    modalToggle: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 10,
+      borderWidth: 1,
+      borderColor: '#f2f2f2',
+      padding: 10,
+      borderRadius: 10,
+      alignSelf: 'center',
+    },
+    modalClose: {
+      marginTop: 20,
+      marginBottom: 0,
+    },
+    modalContent: {
+      flex: 1,
+    }
     
 
     

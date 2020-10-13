@@ -4,6 +4,11 @@ import Home from '../screens/home';
 import Signup from '../screens/signup'; 
 import Login from '../screens/login';
 import Success from '../screens/accountcreated';
+import Search from '../screens/loginSearch';
+import Home1 from '../screens/loginHome';
+import App from '../screens/login';
+
+
 
 const screens = {
   Home: {
@@ -17,6 +22,15 @@ const screens = {
   },
   Success: {
     screen: Success,
+  },
+  Search: {
+    screen: Search,
+  },
+  Home1: {
+    screen: Home1,
+  },
+  App: {
+    screen: App,
   },
 };
 
