@@ -20,7 +20,10 @@ export default function Home({navigation}) {
           'email':email,
           'password':pass
         })
-      }).then((response) => response.json()).then((json) => console.log(json));
+      }).then((response) => response.json()).then((json) => {
+        console.log(json)
+        //navigation.navigate('Login');
+      });
     }
     
     const [email, setEmail] = useState('');

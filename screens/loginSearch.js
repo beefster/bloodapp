@@ -1,12 +1,16 @@
-import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker,  ScrollView } from 'react-native';
+
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TextInput, Button, Picker,  ScrollView,  Modal, FlatList  } from 'react-native';
 //import {Picker} from '@react-native-community/picker';
+import { MaterialIcons } from '@expo/vector-icons';
+import {Card} from 'react-native-paper';
+//import Modal from 'modal-react-native-web';
 
 
 
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
-import  { useState } from 'react';
+
 import * as yup from 'yup';
 
 const validForm = yup.object({
@@ -30,13 +34,25 @@ const validForm = yup.object({
 });
 
 
-export default function Search() {
-    
-   
+export default function Search({navigation}) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [people, setPeople] = useState([
+    { fname: 'Arzak', lname: 'Bajwa', blood: "O+", address:"123 street apt. 7", city: "Anchorage", state: "Alaska", country: "United States of America",  email: "mabajwa2@gmail.com", id: '1' },
+    {fname: 'John', lname: 'Doe', blood: "A+", address:"123 street apt. 8", city: "Anchorage", state: "Alaska", country: "United States of America",  email: "jd2@gmail.com", id: '2' }
+  ])
+  
+
      return (
    
        
        <View style={globalStyles.container1}>
+         
+         
+         
+         
+         
+         
+         
          
          <Text style={globalStyles.searchScreen}>Search for a donor below</Text>
          
@@ -46,12 +62,18 @@ export default function Search() {
       
          
       <Formik
-        initialValues={{ Blood_type: '', City: '', State: '', Country: '', 
+        initialValues={{ Blood_type: 'A+', City: '', State: '', Country: '', 
         Blood_type: '', }}
         validationSchema={validForm}
         onSubmit={(values, actions) => {
-          actions.resetForm();
+
+          ///actions.resetForm();
           console.log(values);
+          navigation.navigate('Success');
+          
+         
+          
+
         }}
       >
         {props => (
@@ -108,14 +130,61 @@ export default function Search() {
           <Picker.Item label="AB negative" value="AB-" />
           
         </Picker>
-        
+
            
             <Button color='blue' title="Search" onPress={props.handleSubmit} />
+
+        <View style={globalStyles.container2}>
+        
+        
+        
+        <FlatList 
+
+        keyExtractor={(item) => item.id} 
+        data={people} 
+        renderItem={({ item }) => ( 
+          <Card style={globalStyles.cardStyle} onPress = {() => setModalOpen(true)} >
+              <View style={globalStyles.resultsRow}>
+                <Text style={globalStyles.resultsRowText}>First name :</Text>
+                <Text style={globalStyles.resultsRowText}>{item.fname}</Text>
+                <Text style={globalStyles.resultsRowText}>Last name :</Text>
+                <Text style={globalStyles.resultsRowText}>{item.lname}</Text>
+                
+              </View>
+              <View style={globalStyles.resultsRow}>
+    
+                <Text style={globalStyles.resultsRowText}>Blood Type :</Text>
+                <Text style={globalStyles.resultsRowText}>{item.blood}</Text>
+              </View>
+              
+              <Modal visible={modalOpen} animationType='slide'>
+                  <View style={globalStyles.modalContent}>
+                    <MaterialIcons 
+                      name='close'
+                       size={24} 
+                       style={{...globalStyles.modalToggle, ...globalStyles.modalClose}} 
+                       onPress={() => setModalOpen(false)} 
+                    />
+               <Text>Hello from the modal :)</Text>
+              </View>
+             </Modal>  
+
+          </Card>
+          
+
+
+
+          
+        )}/>
+
+            </View>
+
             
           </View>
         )}
       </Formik> 
        </View>
+       
     
      );
    }

@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-export default function Home() {
+export default function Home1({navigation}) {
     
    
      return (
