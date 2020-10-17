@@ -42,6 +42,11 @@ export default function Search({navigation}) {
   ])
   
 
+  const getData = (item) =>{
+    var Address = item.address;
+
+  }
+
      return (
    
        
@@ -143,11 +148,15 @@ export default function Search({navigation}) {
         keyExtractor={(item) => item.id} 
         data={people} 
         renderItem={({ item }) => ( 
-          <Card style={globalStyles.cardStyle} onPress = {() => setModalOpen(true)} >
+          <Card style={globalStyles.cardStyle} onPress = {() => 
+          {
+            setModalOpen(true);
+            getData(item);
+          }} >
               <View style={globalStyles.resultsRow}>
-                <Text style={globalStyles.resultsRowText}>First name :</Text>
+                <Text style={globalStyles.resultsRowText}>Name:</Text>
                 <Text style={globalStyles.resultsRowText}>{item.fname}</Text>
-                <Text style={globalStyles.resultsRowText}>Last name :</Text>
+                
                 <Text style={globalStyles.resultsRowText}>{item.lname}</Text>
                 
               </View>
@@ -157,16 +166,39 @@ export default function Search({navigation}) {
                 <Text style={globalStyles.resultsRowText}>{item.blood}</Text>
               </View>
               
-              <Modal visible={modalOpen} animationType='slide'>
-                  <View style={globalStyles.modalContent}>
+              <Modal modalData = {item} visible={modalOpen} animationType='slide'>
+                  <View style={globalStyles.container2}>
                     <MaterialIcons 
                       name='close'
                        size={24} 
                        style={{...globalStyles.modalToggle, ...globalStyles.modalClose}} 
                        onPress={() => setModalOpen(false)} 
                     />
-               <Text>Hello from the modal :)</Text>
+
+                <View style={globalStyles.container2}>    
+               <Card style={globalStyles.cardStyle}  >
+                    
+                   <Text style={globalStyles.resultsRowText}>Address:</Text>
+                   <Text style={globalStyles.resultsRowText}>{item.address}</Text>
+             
+                   <Text style={globalStyles.resultsRowText}>City:</Text>
+                   <Text style={globalStyles.resultsRowText}>{item.city}</Text>
+
+                   <Text style={globalStyles.resultsRowText}>State:</Text>
+                   <Text style={globalStyles.resultsRowText}>{item.state}</Text>
+
+                   <Text style={globalStyles.resultsRowText}>Country:</Text>
+                   <Text style={globalStyles.resultsRowText}>{item.country}</Text>
+
+                   <Text style={globalStyles.resultsRowText}>Email:</Text>
+                   <Text style={globalStyles.resultsRowText}>{item.email}</Text>
+             
+           
+                 </Card>
+               
               </View>
+              </View>
+             
              </Modal>  
 
           </Card>

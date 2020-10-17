@@ -34,7 +34,18 @@ const screens = {
   },
 };
 
+const screen = {
+  Search: {
+    screen: Search,
+  },
+  Success: {
+    screen: Success,
+  },
+  
+ 
+};
 // home stack navigator screens
+const SearchStack = createStackNavigator(screen);
 const HomeStack = createStackNavigator(screens);
 
-export default createAppContainer(HomeStack);
+export default createAppContainer(HomeStack, SearchStack);

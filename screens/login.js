@@ -9,7 +9,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Home from './loginHome';
 import Search from './loginSearch';
-
 //const Tab = createMaterialTopTabNavigator();
 const Tab = createBottomTabNavigator();
 
