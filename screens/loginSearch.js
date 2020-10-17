@@ -5,6 +5,7 @@ import { StyleSheet, View, Text, TextInput, Button, Picker,  ScrollView,  Modal,
 import { MaterialIcons } from '@expo/vector-icons';
 import {Card} from 'react-native-paper';
 //import Modal from 'modal-react-native-web';
+import {SearchStack} from "../routes/homeStack";
 
 
 
@@ -75,6 +76,7 @@ export default function Search({navigation}) {
           ///actions.resetForm();
           console.log(values);
           navigation.navigate('Success');
+         
           
          
           

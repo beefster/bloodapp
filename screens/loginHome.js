@@ -9,13 +9,23 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 export default function Home1({navigation}) {
-    
+  const handleButton = () => {
+    // navigation.navigate('Home');
+     //navigation.navigate('HomeStack', { screen: 'Home' });
+     navigation.goBack();
+   }
    
      return (
    
        
        <View style={globalStyles.container1}>
          <Text style = {globalStyles.greeting}>Welcome username!</Text>
+         <Button
+              onPress={handleButton }
+              title="Logout"
+              color="#841584"
+              
+/>
         
 
        </View>

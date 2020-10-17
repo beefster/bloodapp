@@ -11,43 +11,21 @@ import Search from '../screens/loginSearch';
 import Home1 from '../screens/loginHome';
 import App from '../screens/login';
 import BottomTabNavigator from "./tabNavigator";
-import SearchStack from './searchStack';
+
 
 
 
 const screens = {
-  Home: {
-    screen: Home,
-  },
-  Signup: {
-    screen: Signup,
-  },
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      headerLeft: null
+    Search: {
+      screen: Search,
     },
-  },
-  Success: {
-    screen: Success,
-  },
-  Search: {
-    screen: Search,
-  },
-  Home1: {
-    screen: Home1,
-  },
-  App: {
-    screen: App,
-  },
-};
+    Success: {
+      screen: Success,
+    },
+    
+   
+  };
 
+  const SearchStack = createStackNavigator(screens);
 
-// home stack navigator screens
-
-const HomeStack = createStackNavigator(screens);
-
-
-//export default HomeStack;
-export default createAppContainer(HomeStack);
-
+  export default SearchStack;

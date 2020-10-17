@@ -9,7 +9,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Home from './loginHome';
 import Search from './loginSearch';
-//const Tab = createMaterialTopTabNavigator();
+import SearchStack from '../routes/searchStack';
+import { MainStackNavigator } from "../routes/tabNavigator";
+
 const Tab = createBottomTabNavigator();
 
 
@@ -19,13 +21,14 @@ export default function App({navigation}) {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={Home} options={{
+          
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }} 
          />
-        <Tab.Screen name="Search" component={Search} 
+        <Tab.Screen name="Search" component={MainStackNavigator} 
         options={{
             tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (
