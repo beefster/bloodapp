@@ -76,7 +76,7 @@ const handleSuccess = () => {
     
       <Formik
         initialValues={{ First_name: '', Last_name: '', Address: '', City: '', State: '', Zip_code: '', Country: '', 
-        Blood_type: 'A+',User_type: 'Donor', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
+        Blood_type: 'Unknown',User_type: 'Donor', User_name: '', Email: '', Password:'', Confirm_password: ''  }}
         validationSchema={validForm}
         onSubmit={(values, actions) => {
           console.log(JSON.stringify(values));
@@ -198,6 +198,7 @@ const handleSuccess = () => {
           value = {props.values.Blood_type}
           onBlur={props.handleBlur('Blood_type')} 
           >
+          <Picker.Item label="Unknown" value="Unknown" />
           <Picker.Item label="A positive" value="A+" />
           <Picker.Item label="A negative" value="A-" />
           <Picker.Item label="B positive" value="B+" />
