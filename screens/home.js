@@ -29,15 +29,15 @@ export default function Home({navigation}) {
       });
     }
 
-    const handleSearchTest = () => {
-      fetch('http://localhost:907/api/search', {
+    const handleListTest = () => {
+      fetch('http://localhost:907/api/list', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Content-Type':'application/json'
         }
       }).then((response) =>response.json()).then((responsejson) => {
-        console.log(responsejson);
+        console.log(responsejson.records);
       })
     }
     
@@ -73,10 +73,10 @@ export default function Home({navigation}) {
               </TouchableOpacity>
             </View>
 
-              {/* search test */}
-              <br /><br />
-            <View style = {globalStyles.registerview}>
-              <TouchableOpacity onPress={handleSearchTest} >
+              {/* List test */}
+              
+            <br /><br /><View style = {globalStyles.registerview}>
+              <TouchableOpacity onPress={handleListTest} >
               <Text style = {globalStyles.registertext}>SEARCH TEST</Text>
               </TouchableOpacity>
             </View>

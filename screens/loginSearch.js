@@ -45,8 +45,42 @@ export default function Search({navigation}) {
 
   const getData = (item) =>{
     var Address = item.address;
-
   }
+  
+  
+  //Search submit calls this
+  const handleSearch = (values) => {
+    fetch('http://localhost:907/api/search', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(values)
+      }).then((response) =>response.json()).then((result) => {
+
+        if(result.code == '200'){
+          var i = 0;
+          for(; i < result.records.length; i++){
+            const person = {
+              fname:    result.records[i]['firstName'],
+              lname:    result.records[i]['lastName'],
+              blood:    result.records[i]['bloodType'],
+              address:  result.records[i]['address'],
+              city:     result.records[i]['city'],
+              state:    result.records[i]['state'],
+              country:  result.records[i]['country'],
+              email:    result.records[i]['email'],
+              id:       result.records[i]['UserID']
+            }
+            //insert person into state?
+            console.log(person);
+          }
+
+        } else console.log(result); //server error
+      });
+  }
+  
 
      return (
    
@@ -68,14 +102,15 @@ export default function Search({navigation}) {
       
          
       <Formik
-        initialValues={{ Blood_type: 'A+', City: '', State: '', Country: '', 
+        initialValues={{City: '', State: '', Country: '', 
         Blood_type: '', }}
         validationSchema={validForm}
         onSubmit={(values, actions) => {
 
           ///actions.resetForm();
           console.log(values);
-          navigation.navigate('Success');
+          handleSearch(values);
+          //navigation.navigate('Success');
          
           
          
@@ -127,6 +162,7 @@ export default function Search({navigation}) {
           value = {props.values.Blood_type}
           onBlur={props.handleBlur('Blood_type')} 
           >
+          <Picker.Item label="Any" value="" />
           <Picker.Item label="A positive" value="A+" />
           <Picker.Item label="A negative" value="A-" />
           <Picker.Item label="B positive" value="B+" />
