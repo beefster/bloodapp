@@ -87,7 +87,7 @@ export default function Search({navigation}) {
           setData(temp);
           console.log(data.length);
           console.log(temp);
-          navigation.navigate('Results', temp);
+          navigation.navigate('Results', {data1: temp});
            
 
         } else console.log(result); //server error
@@ -192,80 +192,7 @@ export default function Search({navigation}) {
             
             
 
-        <View style={globalStyles.container2}>
-        
-        
-        
-        <FlatList 
-
-        keyExtractor={(item) => item.id} 
-        data={temp} 
-        renderItem={({ item }) => ( 
-          <Card style={globalStyles.cardStyle} onPress = {() => 
-          {
-            setModalOpen(true);
-            getData(item);
-          }} >
-              <View style={globalStyles.resultsRow}>
-                <Text style={globalStyles.resultsRowText}>Name:</Text>
-                <Text style={globalStyles.resultsRowText}>{item.fname}</Text>
-                
-                <Text style={globalStyles.resultsRowText}>{item.lname}</Text>
-                <Text style={globalStyles.resultsRowText}>{data.address}</Text>
-              </View>
-              <View style={globalStyles.resultsRow}>
-    
-                <Text style={globalStyles.resultsRowText}>Blood Type :</Text>
-                <Text style={globalStyles.resultsRowText}>{item.blood}</Text>
-              </View>
-              
-              <Modal modalData = {item} visible={modalOpen} animationType='slide'>
-                  <View style={globalStyles.container2}>
-                    <MaterialIcons 
-                      name='close'
-                       size={24} 
-                       style={{...globalStyles.modalToggle, ...globalStyles.modalClose}} 
-                       onPress={() => setModalOpen(false)} 
-                    />
-
-                <View style={globalStyles.container2}>    
-               <Card style={globalStyles.cardStyle}  >
-                    
-                   <Text style={globalStyles.resultsRowText}>Address:</Text>
-                   <Text style={globalStyles.resultsRowText}>{item.address}</Text>
-             
-                   <Text style={globalStyles.resultsRowText}>City:</Text>
-                   <Text style={globalStyles.resultsRowText}>{item.city}</Text>
-
-                   <Text style={globalStyles.resultsRowText}>State:</Text>
-                   <Text style={globalStyles.resultsRowText}>{item.state}</Text>
-
-                   <Text style={globalStyles.resultsRowText}>Country:</Text>
-                   <Text style={globalStyles.resultsRowText}>{item.country}</Text>
-
-                   <Text style={globalStyles.resultsRowText}>Email:</Text>
-                   <Text style={globalStyles.resultsRowText}>{item.email}</Text>
-                  
-                   
-             
-           
-                 </Card>
-               
-              </View>
-              </View>
-             
-             </Modal>  
-
-          </Card>
-          
-
-
-
-          
-        )}/>
-
-            </View>
-
+       
             
           </View>
         )}

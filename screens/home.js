@@ -73,9 +73,7 @@ export default function Home({navigation}) {
               </TouchableOpacity>
             </View>
 
-              {/* List test */}
-              
-            <br /><br /><View style = {globalStyles.registerview}>
+              <View style = {globalStyles.registerview}>
               <TouchableOpacity onPress={handleListTest} >
               <Text style = {globalStyles.registertext}>SEARCH TEST</Text>
               </TouchableOpacity>
