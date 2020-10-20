@@ -6,7 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {Card} from 'react-native-paper';
 //import Modal from 'modal-react-native-web';
 import {SearchStack} from "../routes/homeStack";
-
+//import Results from "../screens/searchResults";
 
 
 import { globalStyles } from '../styles/global';
@@ -41,7 +41,8 @@ export default function Search({navigation}) {
     { fname: 'Arzak', lname: 'Bajwa', blood: "O+", address:"123 street apt. 7", city: "Anchorage", state: "Alaska", country: "United States of America",  email: "mabajwa2@gmail.com", id: '1' },
     {fname: 'John', lname: 'Doe', blood: "A+", address:"123 street apt. 8", city: "Anchorage", state: "Alaska", country: "United States of America",  email: "jd2@gmail.com", id: '2' }
   ])
-  
+  let [data, setData] = useState([]); 
+  var temp = [];
 
   const getData = (item) =>{
     var Address = item.address;
@@ -61,6 +62,10 @@ export default function Search({navigation}) {
 
         if(result.code == '200'){
           var i = 0;
+          
+          
+              
+        
           for(; i < result.records.length; i++){
             const person = {
               fname:    result.records[i]['firstName'],
@@ -74,8 +79,16 @@ export default function Search({navigation}) {
               id:       result.records[i]['UserID']
             }
             //insert person into state?
-            console.log(person);
+            console.log(person.email);
+            temp.push(person);
+            //setData([...data, {person}]);
+            
           }
+          setData(temp);
+          console.log(data.length);
+          console.log(temp);
+          navigation.navigate('Results', temp);
+           
 
         } else console.log(result); //server error
       });
@@ -176,6 +189,8 @@ export default function Search({navigation}) {
 
            
             <Button color='blue' title="Search" onPress={props.handleSubmit} />
+            
+            
 
         <View style={globalStyles.container2}>
         
@@ -184,7 +199,7 @@ export default function Search({navigation}) {
         <FlatList 
 
         keyExtractor={(item) => item.id} 
-        data={people} 
+        data={temp} 
         renderItem={({ item }) => ( 
           <Card style={globalStyles.cardStyle} onPress = {() => 
           {
@@ -196,7 +211,7 @@ export default function Search({navigation}) {
                 <Text style={globalStyles.resultsRowText}>{item.fname}</Text>
                 
                 <Text style={globalStyles.resultsRowText}>{item.lname}</Text>
-                
+                <Text style={globalStyles.resultsRowText}>{data.address}</Text>
               </View>
               <View style={globalStyles.resultsRow}>
     
@@ -230,6 +245,8 @@ export default function Search({navigation}) {
 
                    <Text style={globalStyles.resultsRowText}>Email:</Text>
                    <Text style={globalStyles.resultsRowText}>{item.email}</Text>
+                  
+                   
              
            
                  </Card>

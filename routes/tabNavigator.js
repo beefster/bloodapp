@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Search from "../screens/loginSearch";
 import Success from "../screens/accountcreated";
-
+import Results from "../screens/searchResults";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +19,7 @@ const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Search" component={Search}  />
-      <Stack.Screen name="Success" component={Success} />
+      <Stack.Screen name="Results" component={Results} />
     </Stack.Navigator>
   );
 }
