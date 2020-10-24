@@ -1,5 +1,5 @@
 // global styles for our app
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const globalStyles = StyleSheet.create({
     container: {
@@ -156,7 +156,15 @@ export const globalStyles = StyleSheet.create({
     },
     modalContent: {
       flex: 1,
-    }
+    },
+    mapStyle: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    },
+    mapContainer: {
+      flex: 1,
+      
+    },
     
 
     
