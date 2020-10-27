@@ -6,6 +6,7 @@ import { useState } from 'react';
 import * as yup from 'yup';
 import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
+import { NavigationEvents } from 'react-navigation';
 
 
 
@@ -26,7 +27,7 @@ export default function Results({ route, navigation }) {
 
       <FlatList
 
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         data={temp1}
         renderItem={({ item }) => (
           <Card style={globalStyles.cardStyle} onPress={() => {
@@ -69,6 +70,7 @@ export default function Results({ route, navigation }) {
               <Text style={globalStyles.resultsRowText}>Email:</Text>
               <Text style={globalStyles.resultsRowText}>{item.email}</Text>
             </View>
+            <Button onPress={()=>{ navigation.navigate('Maps', { data1: item });} } title="Map" />
           </Card>
         )} />
 

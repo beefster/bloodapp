@@ -80,7 +80,9 @@ const handleSuccess = () => {
         validationSchema={validForm}
         onSubmit={(values, actions) => {
           console.log(JSON.stringify(values));
-          fetch('http://localhost:907/api/register', {
+          
+         // fetch('http://localhost:907/api/register', {
+            fetch('http://192.168.1.7:907/api/register', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
