@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 
 export default function Home({navigation}) {
@@ -23,9 +23,10 @@ export default function Home({navigation}) {
         })
       }).then((response) => response.json()).then((responsejson) => {
         if (responsejson.code == 200){
-          navigation.navigate('Home1');
+          navigation.navigate('Login');
         } else {
-          console.log(responsejson)
+          console.log(responsejson);
+          Alert.alert('Log In Error' , 'Invalid Email or Password');
         }
       });
     }

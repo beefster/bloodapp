@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import  { useState } from 'react';
@@ -59,15 +59,10 @@ const validForm = yup.object({
 
 
 export default function Signup({navigation}) {
- // const [blood, setBlood] = useState('');
 
  const handleLogin = () => {
   navigation.navigate('Login');
 }
-const handleSuccess = () => {
-  navigation.navigate('Success');
-}
-
 
   return (
 
@@ -95,6 +90,7 @@ const handleSuccess = () => {
              navigation.navigate('Success');
            }else {
              console.log(json);
+             Alert.alert('Sign up Error' , 'Invalid Email or Username');
            }
 
           });
@@ -195,7 +191,6 @@ const handleSuccess = () => {
         <Picker
           selectedValue={props.values.Blood_type}
           style={{ height: 50,   padding: 10}}
-          //onValueChange={(bvalue) => setBlood(bvalue)}
           onValueChange={props.handleChange('Blood_type')}
           value = {props.values.Blood_type}
           onBlur={props.handleBlur('Blood_type')} 
@@ -217,7 +212,6 @@ const handleSuccess = () => {
         <Picker
           selectedValue={props.values.User_type}
           style={{ height: 50,   padding: 10}}
-          //onValueChange={(bvalue) => setBlood(bvalue)}
           onValueChange={props.handleChange('User_type')}
           value = {props.values.User_type}
           onBlur={props.handleBlur('User_typee')} 
@@ -271,8 +265,7 @@ const handleSuccess = () => {
         
            
             <Button color='blue' title="Submit" onPress={props.handleSubmit} />
-            <Button color='green' title="Test Screen" onPress={handleLogin} /> 
-            <Button color='green' title="Success Screen" onPress={handleSuccess} />
+            <Button color='green' title="Dashboard" onPress={handleLogin} /> 
           </View>
         )}
       </Formik> 
