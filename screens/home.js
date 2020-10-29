@@ -48,7 +48,7 @@ export default function Home({navigation}) {
         <View style={globalStyles.container}>
           
             <Image
-              style={styles.tinyLogo}
+              style={}
               source={require('../assets/blood-app-icon.png')}
             />
             <Text style = {globalStyles.greeting}>Welcome!</Text>
