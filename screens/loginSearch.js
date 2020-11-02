@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, F
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 //import Modal from 'modal-react-native-web';
-import { SearchStack } from "../routes/homeStack";
+//import { SearchStack } from "../routes/homeStack";
 //import Results from "../screens/searchResults";
 
 

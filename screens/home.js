@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image } from 'react-native';
 import { globalStyles } from '../styles/global';
 
 export default function Home({navigation}) {
@@ -48,10 +48,10 @@ export default function Home({navigation}) {
         <View style={globalStyles.container}>
           
             <Image
-              style={styles.tinyLogo}
+             style={globalStyles.Logo}
               source={require('../assets/blood-app-icon.png')}
             />
-            <Text style = {globalStyles.greeting}>Welcome!</Text>
+            <Text style = {globalStyles.greeting}>Welcome</Text>
           
           <TextInput
             style = {globalStyles.input}

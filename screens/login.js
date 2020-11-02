@@ -9,8 +9,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Home from './loginHome';
 import Search from './loginSearch';
-import SearchStack from '../routes/searchStack';
+//import SearchStack from '../routes/searchStack';
 import { MainStackNavigator } from "../routes/tabNavigator";
+import Stats from './loginStats';
+import { StatsStackNavigator } from "../routes/statsNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,6 +35,14 @@ export default function App({navigation}) {
             tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (
                 <AntDesign name="search1" size={size} color={color} />
+            ),
+          }} />
+
+        <Tab.Screen name="Stats" component={StatsStackNavigator} 
+        options={{
+            tabBarLabel: 'Stats',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="md-stats" size={size} color={color} />
             ),
           }} />
       </Tab.Navigator>
