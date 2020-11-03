@@ -13,10 +13,8 @@ const validForm = yup.object({
 
 
   City: yup.string()
-    .required()
   ,
   State: yup.string()
-    .required()
   ,
 
   Country: yup.string()
@@ -30,8 +28,16 @@ export default function Stats({ navigation }) {
 
   //Search submit calls this
   const handleSearch = (values) => {
-    
-    navigation.navigate('Results');
+    fetch('http://192.168.1.7:907/api/stats', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    }).then((response) => response.json()).then((result) => {
+      navigation.navigate('Results', result.stats)
+    })
   }
 
 

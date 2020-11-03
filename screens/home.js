@@ -10,7 +10,7 @@ export default function Home({navigation}) {
     }
 
     const handleLogin = () => {
-      fetch('http://localhost:907/api/login', {
+      fetch('http://192.168.1.7:907/api/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -31,7 +31,7 @@ export default function Home({navigation}) {
     }
 
     const handleListTest = () => {
-      fetch('http://localhost:907/api/list', {
+      fetch('http://192.168.1.7:907/api/list', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',

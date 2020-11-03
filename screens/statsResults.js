@@ -11,7 +11,7 @@ import {
   const screenWidth = Dimensions.get("window").width;
   const screenHeight = Dimensions.get("window").height;
 
-export default function StatsResults({navigation}) {
+export default function StatsResults({route, navigation}) {
     const chartConfig = {
         backgroundColor: 0,
         backgroundGradientFromOpacity: 0,
@@ -26,11 +26,21 @@ export default function StatsResults({navigation}) {
                 },
       };
 
+      var labellist = []
+      var datalist = []
+      for(var bloodtype in route.params){
+        labellist.push(bloodtype);
+        datalist.push(route.params[bloodtype]);
+      }
+
+      console.log(labellist);
+      console.log(datalist);
+
       const data = {
-        labels: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],
+        labels: labellist,
         datasets: [
           {
-            data: [20, 45, 28, 80, 99, 43, 0, 25]
+            data: datalist
           }
         ]
       };

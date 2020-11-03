@@ -50,9 +50,7 @@ export default function Search({ navigation }) {
 
   //Search submit calls this
   const handleSearch = (values) => {
-    
-   //fetch('http://localhost:907/api/search', {
-      fetch('http://192.168.1.7:907/api/search', {
+    fetch('http://192.168.1.7:907/api/search', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
