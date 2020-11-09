@@ -12,6 +12,10 @@ import Search from '../screens/loginSearch';
 import { MainStackNavigator } from "./searchNavigator";
 import Stats from '../screens/loginStats';
 import { StatsStackNavigator } from "./statsNavigator";
+import { RequestsStackNavigator } from "./requestsNavigator";
+import { Fontisto } from '@expo/vector-icons';
+import Requests from '../screens/requests';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -42,6 +46,14 @@ export default function BottomTabNavigator({navigation}) {
             tabBarLabel: 'Stats',
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="md-stats" size={size} color={color} />
+            ),
+          }} />
+
+          <Tab.Screen name="Requests" component={RequestsStackNavigator} 
+        options={{
+            tabBarLabel: 'Requests',
+            tabBarIcon: ({ color, size }) => (
+              <Fontisto name="blood-drop" size={size} color={color} />
             ),
           }} />
       </Tab.Navigator>

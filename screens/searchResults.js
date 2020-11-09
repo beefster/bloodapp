@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, FlatList, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import { useState } from 'react';
@@ -30,47 +30,28 @@ export default function Results({ route, navigation }) {
         keyExtractor={(item) => item.id.toString()}
         data={temp1}
         renderItem={({ item }) => (
-          <Card style={globalStyles.cardStyle} onPress={() => {
-
-            //getData(item);
-          }} >
+          <Card style={globalStyles.requestsCard}  >
             <View style={globalStyles.resultsRow}>
-              <Text style={globalStyles.resultsRowText}>Name:</Text>
-              <Text style={globalStyles.resultsRowText}>{item.fname}</Text>
+              <Text >Username: </Text>
+              <Text >{item.fname}</Text>
 
-              <Text style={globalStyles.resultsRowText}>{item.lname}</Text>
-
-            </View>
-            <View style={globalStyles.resultsRow}>
-
-              <Text style={globalStyles.resultsRowText}>Blood Type :</Text>
-              <Text style={globalStyles.resultsRowText}>{item.blood}</Text>
+              <Text style={globalStyles.sentRequestsText}>Blood Type :</Text>
+              <Text >{item.blood}</Text>
             </View>
 
-
-
-
+            
             <View style={globalStyles.resultsRow}>
-              <Text style={globalStyles.resultsRowText}>Address:</Text>
-              <Text style={globalStyles.resultsRowText}>{item.address}</Text>
+              <Text >City: </Text>
+              <Text >{item.city}</Text>
+            
+              <Text style={globalStyles.sentRequestsText}>State: </Text>
+              <Text >{item.state}</Text>
             </View>
             <View style={globalStyles.resultsRow}>
-              <Text style={globalStyles.resultsRowText}>City:</Text>
-              <Text style={globalStyles.resultsRowText}>{item.city}</Text>
+              <Text >Country: </Text>
+              <Text >{item.country}</Text>
             </View>
-            <View style={globalStyles.resultsRow}>
-              <Text style={globalStyles.resultsRowText}>State:</Text>
-              <Text style={globalStyles.resultsRowText}>{item.state}</Text>
-            </View>
-            <View style={globalStyles.resultsRow}>
-              <Text style={globalStyles.resultsRowText}>Country:</Text>
-              <Text style={globalStyles.resultsRowText}>{item.country}</Text>
-            </View>
-            <View style={globalStyles.resultsRow}>
-              <Text style={globalStyles.resultsRowText}>Email:</Text>
-              <Text style={globalStyles.resultsRowText}>{item.email}</Text>
-            </View>
-            <Button onPress={()=>{ navigation.navigate('Maps', { data1: item });} } title="Map" />
+            <Button onPress={()=>{ Alert.alert('Request Sent' , 'To: '.concat(item.fname).concat("\nBlood Requested: ").concat(item.blood));} } title="Send Request" />
           </Card>
         )} />
 
