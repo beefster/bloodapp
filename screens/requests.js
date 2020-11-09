@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import  { useState } from 'react';
 import { Card } from 'react-native-paper';
@@ -10,10 +10,12 @@ export default function Requests({navigation}) {
 
       const [showSent, setSent] = useState(true);
       const [showApproved, setApproved] = useState(false);
+      const [showReceived, setReceived] = useState(false);
 
       const handleSent = () => {
         if (showSent == false){
             setApproved(false);
+            setReceived(false);
             setSent(true);
             
         }
@@ -23,7 +25,18 @@ export default function Requests({navigation}) {
       const handleApproved = () => {
         if (showApproved == false){
             setSent(false);
+            setReceived(false);
             setApproved(true);
+
+        }
+                
+      }
+
+      const handleReceived = () => {
+        if (showReceived == false){
+            setSent(false);
+            setApproved(false);
+            setReceived(true);
 
         }
                 
@@ -46,6 +59,13 @@ export default function Requests({navigation}) {
          address: "123 Vanguard Dr apt. 8", city: "Anchorage", 
          state: "Alaska", country: "United States", email: "jd2@gmail.com", id: '2' }
       ])
+
+      const [receivedRequests, setReceivedRequests] = useState([
+        { uname: 'mabajwa',  blood: "O+", 
+         city: "Anchorage", state: "Alaska", country: "United States", id: 1 },
+        { uname: 'Troll',  blood: "A+", 
+         city: "Anchorage", state: "Alaska", country: "United States", id: 2 }
+      ])
    
      return (
    
@@ -57,13 +77,19 @@ export default function Requests({navigation}) {
 
          
                     <TouchableOpacity onPress={handleSent}>
-                        <Text style = {globalStyles.requestsText} >Sent Requests</Text>
+                        <Text style = {globalStyles.requestsText} >Sent </Text>
                     </TouchableOpacity>
             </View>
 
             <View style={globalStyles.requestsRow}>
                     <TouchableOpacity onPress={handleApproved}>
-                        <Text style = {globalStyles.requestsText} >Approved Requests</Text>
+                        <Text style = {globalStyles.requestsText} >Approved </Text>
+                     </TouchableOpacity>
+            </View>
+
+            <View style={globalStyles.requestsRow}>
+                    <TouchableOpacity onPress={handleReceived}>
+                        <Text style = {globalStyles.requestsText} >Received </Text>
                      </TouchableOpacity>
             </View>
 
@@ -120,8 +146,15 @@ export default function Requests({navigation}) {
             // end sent requests
                 
                 
-            : 
+            : null
 
+            
+            
+
+        }
+
+        {
+            showApproved ? 
             //show approved requests 
 
             <View style={globalStyles.container2}>
@@ -180,6 +213,67 @@ export default function Requests({navigation}) {
 
             </View>
             // end approved requests
+            : null
+        }
+
+
+
+        {
+            showReceived ? 
+            
+            //show received 
+
+            <View style={globalStyles.container2}>
+
+                <Text style={globalStyles.greeting2}>Total Received Requests: {receivedRequests.length}</Text>
+
+                <FlatList
+
+                keyExtractor={(item) => item.id.toString()}
+                data={receivedRequests}
+                renderItem={({ item }) => (
+                <Card style={globalStyles.requestsCard}>
+                    <View style={globalStyles.resultsRow}>
+                    <Text >Request id: </Text>
+                    <Text >{item.id}</Text>
+                    </View>
+
+
+
+                    <View style={globalStyles.resultsRow}>
+
+                    <Text >From: </Text>
+                    <Text >{item.uname}</Text>
+                    <Text style={globalStyles.sentRequestsText}>Requested Blood: </Text>
+                    <Text >{item.blood}</Text>
+                    </View>
+
+
+
+                    <View style={globalStyles.resultsRow}>
+                    <Text >City: </Text>
+                    <Text >{item.city}</Text>
+            
+                    <Text style={globalStyles.sentRequestsText}>State: </Text>
+                    <Text >{item.state}</Text>
+                    </View>
+                    <View style={globalStyles.resultsRow}>
+                    <Text >Country: </Text>
+                    <Text >{item.country}</Text>
+                    </View>
+
+                    <Button onPress={()=>{ Alert.alert('Request Approved' , 'For: '.concat(item.uname).concat("\nBlood Requested: ").concat(item.blood));} } title="Approve Request" />
+            
+                    </Card>
+                  )} />
+
+            </View>
+            // end received requests
+                
+                
+            : null
+
+            
             
 
         }
