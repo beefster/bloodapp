@@ -19,7 +19,7 @@ export default function StatsResults({route, navigation}) {
                 backgroundGradientTo: 'white',
                 fillShadowGradient:'green',
                 fillShadowGradientOpacity:1,
-                decimalPlaces: 0,
+                decimalPlaces: 1,
                 color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                 style: {
                   borderRadius: 16,

@@ -10,9 +10,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function Home1({navigation}) {
   const handleButton = () => {
-    // navigation.navigate('Home');
-     //navigation.navigate('HomeStack', { screen: 'Home' });
-     navigation.goBack();
+     navigation.navigate('Home');
+    
+     
    }
    
      return (

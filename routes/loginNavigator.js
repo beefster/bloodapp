@@ -7,22 +7,21 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import Home from './loginHome';
-import Search from './loginSearch';
-//import SearchStack from '../routes/searchStack';
-import { MainStackNavigator } from "../routes/searchNavigator";
-import Stats from './loginStats';
-import { StatsStackNavigator } from "../routes/statsNavigator";
+import Home from '../screens/loginHome';
+import Search from '../screens/loginSearch';
+import { MainStackNavigator } from "./searchNavigator";
+import Stats from '../screens/loginStats';
+import { StatsStackNavigator } from "./statsNavigator";
 
 const Tab = createBottomTabNavigator();
 
 
 
-export default function App({navigation}) {
+export default function BottomTabNavigator({navigation}) {
   return (
-    <NavigationContainer>
+    
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} options={{
+        <Tab.Screen name="Login" component={Home} options={{
           
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
@@ -46,6 +45,5 @@ export default function App({navigation}) {
             ),
           }} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }
