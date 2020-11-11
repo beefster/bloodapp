@@ -16,8 +16,6 @@ import { StatsStackNavigator } from "../routes/statsNavigator";
 
 const Tab = createBottomTabNavigator();
 
-
-
 export default function App({navigation}) {
   return (
     <NavigationContainer>

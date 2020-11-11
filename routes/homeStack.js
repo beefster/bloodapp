@@ -24,6 +24,7 @@ const FirstStackNavigator = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Login" component={BottomTabNavigator} />
+      <Stack.Screen name="Success" component={Success} />
       
     </Stack.Navigator>
   );

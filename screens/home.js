@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image } from 'react-native';
 import { globalStyles } from '../styles/global';
 
+import * as SecureStore from 'expo-secure-store';
+
 export default function Home({navigation}) {
 
     const handleSignup = () => {
@@ -22,10 +24,15 @@ export default function Home({navigation}) {
         })
       }).then((response) => response.json()).then((responsejson) => {
         if (responsejson.code == 200){
-          navigation.navigate('Login');
+          try{
+            SecureStore.setItemAsync('token', responsejson.token)
+            navigation.navigate('Login', { name: responsejson.name });
+          }catch(e){
+            console.log(e)
+          }
         } else {
           console.log(responsejson);
-          Alert.alert('Log In Error' , 'Invalid Email or Password');
+          Alert.alert('Login Error' , 'Invalid Email or Password');
         }
       });
     }

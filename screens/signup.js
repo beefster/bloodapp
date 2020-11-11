@@ -265,7 +265,7 @@ export default function Signup({navigation}) {
         
            
             <Button color='blue' title="Submit" onPress={props.handleSubmit} />
-            <Button color='green' title="Dashboard" onPress={handleLogin} /> 
+            {/* <Button color='green' title="Dashboard" onPress={handleLogin} /> */}
           </View>
         )}
       </Formik> 

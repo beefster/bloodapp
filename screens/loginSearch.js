@@ -78,14 +78,14 @@ export default function Search({ navigation }) {
             id: result.records[i]['UserID']
           }
           //insert person into state?
-          console.log(person.email);
+          //console.log(person.email);
           temp.push(person);
           //setData([...data, {person}]);
 
         }
         setData(temp);
-        console.log(data.length);
-        console.log(temp);
+        //console.log(data.length);
+        //console.log(temp);
         navigation.navigate('Results', { data1: temp });
 
 

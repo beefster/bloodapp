@@ -21,18 +21,17 @@ const Tab = createBottomTabNavigator();
 
 
 
-export default function BottomTabNavigator({navigation}) {
+export default function BottomTabNavigator({route, navigation}) {
+
   return (
-    
       <Tab.Navigator>
-        <Tab.Screen name="Login" component={Home} options={{
+        <Tab.Screen name="Login" children={() => <Home navigation={navigation} fname={route.params.name}/>} options={{
           
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }} 
-         />
+          )}
+}/>
         <Tab.Screen name="Search" component={MainStackNavigator} 
         options={{
             tabBarLabel: 'Search',
