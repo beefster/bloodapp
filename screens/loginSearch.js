@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, F
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 //import Modal from 'modal-react-native-web';
-import { SearchStack } from "../routes/homeStack";
+//import { SearchStack } from "../routes/homeStack";
 //import Results from "../screens/searchResults";
 
 
@@ -50,9 +50,7 @@ export default function Search({ navigation }) {
 
   //Search submit calls this
   const handleSearch = (values) => {
-    
-   //fetch('http://localhost:907/api/search', {
-      fetch('http://192.168.1.7:907/api/search', {
+    fetch('http://192.168.1.7:907/api/search', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -80,14 +78,14 @@ export default function Search({ navigation }) {
             id: result.records[i]['UserID']
           }
           //insert person into state?
-          console.log(person.email);
+          //console.log(person.email);
           temp.push(person);
           //setData([...data, {person}]);
 
         }
         setData(temp);
-        console.log(data.length);
-        console.log(temp);
+        //console.log(data.length);
+        //console.log(temp);
         navigation.navigate('Results', { data1: temp });
 
 

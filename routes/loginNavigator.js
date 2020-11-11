@@ -7,27 +7,31 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import Home from './loginHome';
-import Search from './loginSearch';
-//import SearchStack from '../routes/searchStack';
-import { MainStackNavigator } from "../routes/searchNavigator";
-import Stats from './loginStats';
-import { StatsStackNavigator } from "../routes/statsNavigator";
+import Home from '../screens/loginHome';
+import Search from '../screens/loginSearch';
+import { MainStackNavigator } from "./searchNavigator";
+import Stats from '../screens/loginStats';
+import { StatsStackNavigator } from "./statsNavigator";
+import { RequestsStackNavigator } from "./requestsNavigator";
+import { Fontisto } from '@expo/vector-icons';
+import Requests from '../screens/requests';
+
 
 const Tab = createBottomTabNavigator();
 
-export default function App({navigation}) {
+
+
+export default function BottomTabNavigator({route, navigation}) {
+
   return (
-    <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} options={{
+        <Tab.Screen name="Login" children={() => <Home navigation={navigation} fname={route.params.name}/>} options={{
           
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }} 
-         />
+          )}
+}/>
         <Tab.Screen name="Search" component={MainStackNavigator} 
         options={{
             tabBarLabel: 'Search',
@@ -43,7 +47,14 @@ export default function App({navigation}) {
               <Ionicons name="md-stats" size={size} color={color} />
             ),
           }} />
+
+          <Tab.Screen name="Requests" component={RequestsStackNavigator} 
+        options={{
+            tabBarLabel: 'Requests',
+            tabBarIcon: ({ color, size }) => (
+              <Fontisto name="blood-drop" size={size} color={color} />
+            ),
+          }} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }

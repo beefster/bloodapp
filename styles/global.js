@@ -29,16 +29,53 @@ export const globalStyles = StyleSheet.create({
       marginLeft: 10,
       
     },
+
+    requestsRow: {
+      borderWidth: 1,
+      borderColor: '#ddd',
+      borderRadius: 6,
+      flexDirection: 'row',
+      padding: 5,
+      marginLeft: 0,
+      marginRight: 0,
+      
+    },
+
+    
+
+    requestsText: {
+      fontSize: 20,
+      color: 'black',
+      padding: 10,
+      marginLeft: 10,
+      marginRight: 10,
+      
+    },
     resultsRowText: {
       padding: 5,
       color:'white'
       
     },
 
+    sentRequestsText: {
+      
+      marginLeft: 30,
+      
+    },
+
     cardStyle: {
       margin:5,
       backgroundColor: 'green',
-      borderRadius: 10
+      borderRadius: 10,
+      marginBottom: 10
+      
+    },
+
+    requestsCard: {
+      margin:5,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      marginBottom: 10
       
     },
     
@@ -56,8 +93,14 @@ export const globalStyles = StyleSheet.create({
       
     },
     greeting1: {
-      fontSize: 25,
+      fontSize: 20,
       color: 'green',
+      padding: 10,
+      
+    },
+    greeting2: {
+      fontSize: 18,
+      color: 'black',
       padding: 10,
       
     },
@@ -164,6 +207,28 @@ export const globalStyles = StyleSheet.create({
     mapContainer: {
       flex: 1,
       
+    },
+    Logo: {
+      resizeMode: "contain",
+      height: 200,
+      width: 200
+      
+    },
+
+    graphView: {
+      flex: 1,
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      padding: 10,
+    },
+    graphHeader: {
+      textAlign: 'center',
+      fontSize: 18,
+      padding: 16,
+      marginTop: 16,
+      color: "green"
     },
     
 

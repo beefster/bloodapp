@@ -76,7 +76,7 @@ export default function Signup({navigation}) {
         onSubmit={(values, actions) => {
           console.log(JSON.stringify(values));
           
-         // fetch('http://localhost:907/api/register', {
+          //fetch('http://localhost:907/api/register', {
             fetch('http://192.168.1.7:907/api/register', {
             method: 'POST',
             headers: {
@@ -265,7 +265,7 @@ export default function Signup({navigation}) {
         
            
             <Button color='blue' title="Submit" onPress={props.handleSubmit} />
-            <Button color='green' title="Dashboard" onPress={handleLogin} /> 
+            {/* <Button color='green' title="Dashboard" onPress={handleLogin} /> */}
           </View>
         )}
       </Formik> 
