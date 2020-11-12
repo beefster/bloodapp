@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image } from 'react-native';
 import { globalStyles } from '../styles/global';
+
+import * as SecureStore from 'expo-secure-store';
 
 export default function Home({navigation}) {
 
@@ -10,7 +12,7 @@ export default function Home({navigation}) {
     }
 
     const handleLogin = () => {
-      fetch('http://localhost:907/api/login', {
+      fetch('http://192.168.1.7:907/api/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -22,16 +24,21 @@ export default function Home({navigation}) {
         })
       }).then((response) => response.json()).then((responsejson) => {
         if (responsejson.code == 200){
-          navigation.navigate('Login');
+          try{
+            SecureStore.setItemAsync('token', responsejson.token)
+            navigation.navigate('Login', { name: responsejson.name });
+          }catch(e){
+            console.log(e)
+          }
         } else {
           console.log(responsejson);
-          Alert.alert('Log In Error' , 'Invalid Email or Password');
+          Alert.alert('Login Error' , 'Invalid Email or Password');
         }
       });
     }
 
     const handleListTest = () => {
-      fetch('http://localhost:907/api/list', {
+      fetch('http://192.168.1.7:907/api/list', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -48,10 +55,10 @@ export default function Home({navigation}) {
         <View style={globalStyles.container}>
           
             <Image
-              style={}
+             style={globalStyles.Logo}
               source={require('../assets/blood-app-icon.png')}
             />
-            <Text style = {globalStyles.greeting}>Welcome!</Text>
+            <Text style = {globalStyles.greeting}>Welcome</Text>
           
           <TextInput
             style = {globalStyles.input}
