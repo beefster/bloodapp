@@ -44,7 +44,7 @@ export const globalStyles = StyleSheet.create({
     
 
     requestsText: {
-      fontSize: 20,
+      fontSize: 15,
       color: 'black',
       padding: 10,
       marginLeft: 10,
@@ -168,6 +168,17 @@ export const globalStyles = StyleSheet.create({
       borderRadius: 6,
       marginBottom: 7,
       marginRight: 12,
+
+    },
+
+    profileRow: {
+      borderWidth: 1,
+      borderColor: '#ddd',
+      padding: 5,
+      fontSize: 16,
+      borderRadius: 6,
+      marginBottom: 7,
+      marginRight: 3,
 
     },
     error: {

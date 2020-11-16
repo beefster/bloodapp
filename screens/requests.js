@@ -11,11 +11,13 @@ export default function Requests({navigation}) {
       const [showSent, setSent] = useState(true);
       const [showApproved, setApproved] = useState(false);
       const [showReceived, setReceived] = useState(false);
+      const [showAvailable, setAvailable] = useState(false);
 
       const handleSent = () => {
         if (showSent == false){
             setApproved(false);
             setReceived(false);
+            setAvailable(false);
             setSent(true);
             
         }
@@ -26,6 +28,7 @@ export default function Requests({navigation}) {
         if (showApproved == false){
             setSent(false);
             setReceived(false);
+            setAvailable(false);
             setApproved(true);
 
         }
@@ -36,7 +39,19 @@ export default function Requests({navigation}) {
         if (showReceived == false){
             setSent(false);
             setApproved(false);
+            setAvailable(false);
             setReceived(true);
+
+        }
+                
+      }
+
+      const handleAvailable = () => {
+        if (showAvailable == false){
+            setSent(false);
+            setApproved(false);
+            setReceived(false);
+            setAvailable(true);
 
         }
                 
@@ -90,6 +105,12 @@ export default function Requests({navigation}) {
             <View style={globalStyles.requestsRow}>
                     <TouchableOpacity onPress={handleReceived}>
                         <Text style = {globalStyles.requestsText} >Received </Text>
+                     </TouchableOpacity>
+            </View>
+
+            <View style={globalStyles.requestsRow}>
+                    <TouchableOpacity onPress={handleAvailable}>
+                        <Text style = {globalStyles.requestsText} >Available </Text>
                      </TouchableOpacity>
             </View>
 
@@ -176,37 +197,29 @@ export default function Requests({navigation}) {
 
                     <View style={globalStyles.resultsRow}>
 
-                    <Text >Username: </Text>
+                    <Text >For: </Text>
                     <Text >{item.uname}</Text>
-                    <Text >    Email: </Text>
-                    <Text >{item.email}</Text>
-                    
-                    </View>
-                    <View style={globalStyles.resultsRow}>
-                    <Text >Name: </Text>
-                    <Text >{item.fname }</Text>
-                    <Text > {item.lname }</Text>   
-                    <Text style={globalStyles.sentRequestsText}>Blood Type: </Text>
+                   
+                      
+                    <Text style={globalStyles.sentRequestsText}>Requested Blood: </Text>
                     <Text >{item.blood}</Text>
                     </View>
 
 
 
                     <View style={globalStyles.resultsRow}>
-                    <Text >Address: </Text>
-                    <Text >{item.address}</Text>
-                    <Text style={globalStyles.sentRequestsText}>City: </Text>
+                    
+                    <Text >City: </Text>
                     <Text >{item.city}</Text>
             
                     
-                    </View>
-                    <View style={globalStyles.resultsRow}>
+                    
                     <Text >State: </Text>
                     <Text >{item.state}</Text>   
                     <Text style={globalStyles.sentRequestsText}>Country: </Text>
                     <Text >{item.country}</Text>
                     </View>
-                    <Button onPress={()=>{ navigation.navigate('Maps', { data1: item });} } title="Map" />
+                    
             
                     </Card>
                   )} />
@@ -277,7 +290,70 @@ export default function Requests({navigation}) {
             
 
         }
-       
+
+
+{
+            showAvailable ? 
+            //show available donors 
+
+            <View style={globalStyles.container2}>
+
+                <Text style={globalStyles.greeting2}>Total Available Donors: {sentRequests.length}</Text>
+
+                <FlatList
+
+                keyExtractor={(item) => item.id.toString()}
+                data={approvedRequests}
+                renderItem={({ item }) => (
+                <Card style={globalStyles.requestsCard}>
+                    <View style={globalStyles.resultsRow}>
+                    <Text >Request id: </Text>
+                    <Text >{item.id}</Text>
+                    </View>
+
+
+
+                    <View style={globalStyles.resultsRow}>
+
+                    <Text >Username: </Text>
+                    <Text >{item.uname}</Text>
+                    <Text >    Email: </Text>
+                    <Text >{item.email}</Text>
+                    
+                    </View>
+                    <View style={globalStyles.resultsRow}>
+                    <Text >Name: </Text>
+                    <Text >{item.fname }</Text>
+                    <Text > {item.lname }</Text>   
+                    <Text style={globalStyles.sentRequestsText}>Blood Type: </Text>
+                    <Text >{item.blood}</Text>
+                    </View>
+
+
+
+                    <View style={globalStyles.resultsRow}>
+                    <Text >Address: </Text>
+                    <Text >{item.address}</Text>
+                    <Text style={globalStyles.sentRequestsText}>City: </Text>
+                    <Text >{item.city}</Text>
+            
+                    
+                    </View>
+                    <View style={globalStyles.resultsRow}>
+                    <Text >State: </Text>
+                    <Text >{item.state}</Text>   
+                    <Text style={globalStyles.sentRequestsText}>Country: </Text>
+                    <Text >{item.country}</Text>
+                    </View>
+                    <Button onPress={()=>{ navigation.navigate('Maps', { data1: item });} } title="Map" />
+            
+                    </Card>
+                  )} />
+
+            </View>
+            // end available donors
+            : null
+        }
         
          
          
