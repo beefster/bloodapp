@@ -2,7 +2,34 @@ import React from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import  { useState } from 'react';
-import { Card } from 'react-native-paper';
+import { Card } from 'react-native-paper';import * as SecureStore from 'expo-secure-store';
+
+const getRequests = async () => {
+  try{
+    const token = await SecureStore.getItemAsync('token');
+    fetch('http://192.168.1.7:907/api/getRequests', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type':'application/json',
+        'Authorization':'Bearer ' + token
+      }
+    }).then((response) => response.json()).then((responsejson) => {
+      if (responsejson.code == 200){
+        console.log(responsejson.receivedRequests)
+        //array of incoming
+
+        console.log(responsejson.sentRequests)
+        //array of outgoing
+
+      } else {
+        console.log(responsejson);
+      }
+    }).done()
+  } catch(e) {
+    console.log(e);
+  }
+}
 
 
 export default function Requests({navigation}) {
