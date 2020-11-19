@@ -15,7 +15,7 @@ import { StatsStackNavigator } from "./statsNavigator";
 import { RequestsStackNavigator } from "./requestsNavigator";
 import { Fontisto } from '@expo/vector-icons';
 import Requests from '../screens/requests';
-
+import * as SecureStore from 'expo-secure-store';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +25,7 @@ export default function BottomTabNavigator({route, navigation}) {
 
   return (
       <Tab.Navigator>
-        <Tab.Screen name="Login" children={() => <Home navigation={navigation} fname={route.params.name}/>} options={{
+        <Tab.Screen name="Login" children={() => <Home navigation={navigation} profile={route.params.profile}/>} options={{
           
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (

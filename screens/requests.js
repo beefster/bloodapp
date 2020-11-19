@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import  { useState } from 'react';
-import { Card } from 'react-native-paper';import * as SecureStore from 'expo-secure-store';
+import { Card } from 'react-native-paper';
+import * as SecureStore from 'expo-secure-store';
 
 const getRequests = async () => {
   try{

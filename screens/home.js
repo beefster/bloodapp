@@ -26,7 +26,7 @@ export default function Home({navigation}) {
         if (responsejson.code == 200){
           try{
             SecureStore.setItemAsync('token', responsejson.token)
-            navigation.navigate('Login', { name: responsejson.name });
+            navigation.navigate('Login', { profile: responsejson.profile });
           }catch(e){
             console.log(e)
           }
@@ -36,6 +36,28 @@ export default function Home({navigation}) {
         }
       });
     }
+
+    // const getProfile = async () => {
+    //   try{
+    //     const token = await SecureStore.getItemAsync('token');
+    //     const response = await fetch('http://192.168.1.7:907/api/getProfile', {
+    //       method: 'GET',
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type':'application/json',
+    //         'Authorization':'Bearer ' + token
+    //       }
+    //     })
+    //     const responsejson = await response.json();
+    //     if (responsejson.code == 200){
+    //       return responsejson.record
+    //     } else {
+    //       console.log('error getting profile')
+    //     }
+    //   } catch(e) {
+    //     console.log(e);
+    //   }
+    // }
 
     const handleListTest = () => {
       fetch('http://192.168.1.7:907/api/list', {
