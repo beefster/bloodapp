@@ -24,7 +24,7 @@ export default function Home1(props) {
         id: props.profile.id
       }
     ])
-    const [showProfile, setProfile] = useState(false);
+    const [showProfile, setProfile] = useState(true);
     const [showPassword, setPassword] = useState(false);
     const [edit, setEdit] = useState(false);
 
@@ -57,7 +57,8 @@ export default function Home1(props) {
       const checkPass = (input) => {
         if (input == userpass){
           setPassword(false);  
-          setProfile(true);
+         // setProfile(true);
+         Alert.alert('Information Updated' , 'Success!');
 
         }
       }
@@ -110,7 +111,13 @@ export default function Home1(props) {
       }
 
       else {
-        Alert.alert('Information Updated' , 'Success!');
+        if (showPassword == false){
+          setPassword(true);
+        }
+        //else{
+
+        //Alert.alert('Information Updated' , 'Success!');
+       // }
       }
     }
 
@@ -119,8 +126,8 @@ export default function Home1(props) {
      <View style={globalStyles.container1}>
       <Text style = {globalStyles.greeting}>Welcome, {props.profile.fname}!</Text>
       <View style={{flexDirection: "row"}}>
-      <TouchableOpacity onPress={handleProfile}>
-                      <Text style = {globalStyles.requestsText} >View/Change Profile </Text>
+      <TouchableOpacity >
+                      <Text style = {globalStyles.requestsText} >View/Change Your Profile </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={handleButton}>
