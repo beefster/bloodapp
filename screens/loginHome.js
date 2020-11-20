@@ -111,7 +111,12 @@ export default function Home1(props) {
       }
 
       else {
-        if (showPassword == false){
+        if (newBlood == userInfo[0].blood && newAddress == userInfo[0].address && newCity == userInfo[0].city
+          && newState == userInfo[0].state && newPass == "" && cnewPass == ""){
+            Alert.alert('Change Info' , 'Nothing to change');
+          }
+  
+        else if (showPassword == false){
           setPassword(true);
         }
         //else{
