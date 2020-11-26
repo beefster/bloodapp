@@ -15,6 +15,7 @@ export default function Home1(props) {
       { fname: props.profile.fname,
         lname: props.profile.lname,
         uname: props.profile.uname,
+        usertype:props.profile.usertype,
         blood: props.profile.blood,
         address: props.profile.address,
         city: props.profile.city,
