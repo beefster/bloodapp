@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, TouchableOpacity, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import  { useState } from 'react';
@@ -37,9 +37,11 @@ export default function Home1(props) {
     const [newAddress, setNewAddress] = useState(userInfo[0].address);
     const [newState, setNewState] = useState(userInfo[0].state);
     const [newCountry, setNewCountry] = useState(userInfo[0].country);
+    const [newUtype, setNewUtype] = useState(userInfo[0].usertype);
 
     const [input, setInput] = useState("");
     var userpass = "1234";
+    const [currentPass, setCurrentPass] = useState("");
     
     const handleButton = () => {
       props.navigation.navigate('Home');
@@ -106,6 +108,12 @@ export default function Home1(props) {
       else if (newCountry == ""){
         Alert.alert('Input Error' , 'Country is a required field');
       }
+      else if (newUtype != "donor" &&
+      newUtype != "recipient"
+    
+      ){
+        Alert.alert('Input Error' , 'Wrong user type');
+      }
 
       else if ((newPass.length != 0 && newPass.length <8) || newPass != cnewPass ){
         Alert.alert('Input Error' , 'Password/Confirm password  either don\'t match or have length less than 8');
@@ -117,9 +125,9 @@ export default function Home1(props) {
             Alert.alert('Change Info' , 'Nothing to change');
           }
   
-        else if (showPassword == false){
-          setPassword(true);
-        }
+      //  else if (showPassword == false){
+       //   setPassword(true);
+       // }
         //else{
 
         //Alert.alert('Information Updated' , 'Success!');
@@ -129,6 +137,10 @@ export default function Home1(props) {
 
     return (
       <ScrollView>
+       <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+      
+    }}>
      <View style={globalStyles.container1}>
       <Text style = {globalStyles.greeting}>Welcome, {props.profile.fname}!</Text>
       <View style={{flexDirection: "row"}}>
@@ -212,6 +224,7 @@ export default function Home1(props) {
               <TextInput
                 style={globalStyles.profileRow}
                 value={newBlood}
+                placeholder = "A+, A-, AB+, AB-, etc."
                 onChangeText={(v) =>setNewBlood(v)}
                 editable = {edit}
 
@@ -272,6 +285,23 @@ export default function Home1(props) {
 
               <View style={{flexDirection: "row"}}>
               <View style = {globalStyles.container1}>
+                <Text> User Type</Text>
+              <TextInput
+                style={globalStyles.profileRow}
+                placeholder = "donor or recipient"
+                value={newUtype}
+                
+                onChangeText={(value) =>setNewUtype(value)}
+                editable = {edit}
+
+              />
+              </View>
+
+              
+              </View> 
+
+              <View style={{flexDirection: "row"}}>
+              <View style = {globalStyles.container1}>
                 <Text> Email</Text>
               <TextInput
                 style={globalStyles.profileRow}
@@ -289,7 +319,7 @@ export default function Home1(props) {
                 <Text> New password</Text>
               <TextInput
                 style={globalStyles.profileRow}
-                placeholder = "New password"
+                placeholder = "Must be 8 characters or longer"
                 value={newPass}
                 secureTextEntry={true}
                 onChangeText={(value) =>setNewPass(value)}
@@ -297,12 +327,13 @@ export default function Home1(props) {
 
               />
               </View>
+              </View> 
 
               <View style = {globalStyles.container1}>
                 <Text> Confirm new password</Text>
               <TextInput
                 style={globalStyles.profileRow}
-                placeholder = "Confirm new password"
+                placeholder = "Must match the new password field"
                 secureTextEntry={true}
                 value={cnewPass}
                 onChangeText={(value) =>setCNewPass(value)}
@@ -310,7 +341,28 @@ export default function Home1(props) {
 
               />
               </View>
+              
+
+              
+
+              <View style={{flexDirection: "row"}}>
+              <View style = {globalStyles.container1}>
+                <Text> Current Password</Text>
+              <TextInput
+                style={globalStyles.profileRow}
+                placeholder = "Current Password"
+                value={currentPass}
+                secureTextEntry={true}
+                onChangeText={(value) =>setCurrentPass(value)}
+                editable = {edit}
+
+              />
+              </View>
+
+              
               </View> 
+
+             
 
               <Button onPress={ handleUpdate} title="Update" />
               </View>
@@ -328,6 +380,7 @@ export default function Home1(props) {
         
 
      </View>
+    </TouchableWithoutFeedback> 
      </ScrollView>
      );
 }

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image, ScrollView, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 
 import * as SecureStore from 'expo-secure-store';
@@ -73,14 +73,32 @@ export default function Home({navigation}) {
     
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [showPass, setShowPass] = useState(true);
+
+    const handlePass = () =>{
+      if (showPass == false){
+        setShowPass(true);
+      } 
+      else{
+        setShowPass(false);
+      }
+    }
     return (
+        
+      
+      <ScrollView>
+        <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+      
+    }}>
         <View style={globalStyles.container}>
-          
+         
             <Image
              style={globalStyles.Logo}
               source={require('../assets/blood-app-icon.png')}
             />
             <Text style = {globalStyles.greeting}>Welcome</Text>
+            <Text></Text>
           
           <TextInput
             style = {globalStyles.input}
@@ -88,28 +106,30 @@ export default function Home({navigation}) {
             onChangeText = {(val) => setEmail(val) } />
              <TextInput
               style = {globalStyles.input}
-              secureTextEntry={true}
+              secureTextEntry={showPass}
               placeholder = "Password..."
               onChangeText = {(val) => setPass(val) } />   
             
-            
-            <TouchableOpacity>
-              <Text >Forgot Password?</Text>
+            <View>
+            <TouchableOpacity onPress={handlePass}>
+              <Text >Show/Hide Password</Text>
             </TouchableOpacity>
-            <View style = {globalStyles.login}>
-              <TouchableOpacity onPress={handleLogin}>
-              <Text style = {globalStyles.logintext}>LOG IN</Text>
-              </TouchableOpacity>
             </View>
-            <View style = {globalStyles.registerview}>
-              <TouchableOpacity onPress={handleSignup} >
-              <Text style = {globalStyles.registertext}>SIGN UP </Text>
-              </TouchableOpacity>
-            </View>
+            
+            <View style = {globalStyles.l1}>
+            <Button color='green' onPress={ handleLogin} title="LOG IN" />
+            </View >
 
+            <View style = {globalStyles.l1}>
+            <Button  onPress={handleSignup} title="SIGN UP" />
+            </View >
               
 
         <StatusBar style="auto" />
+        
       </View>
+      </TouchableWithoutFeedback>
+      </ScrollView>
+      
     );
 }

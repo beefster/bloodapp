@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, Alert, TouchableWithoutFeedback, Keyboard  } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 //import { SearchStack } from "../routes/homeStack";
@@ -123,7 +123,10 @@ export default function Stats({ navigation }) {
 
   return (
 
-
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+      
+    }}>
     <View style={globalStyles.container1}>
 
 
@@ -248,7 +251,7 @@ export default function Stats({ navigation }) {
         )}
       </Formik>
     </View>
-
+   </TouchableWithoutFeedback> 
 
   );
 }

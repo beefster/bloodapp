@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import  { useState } from 'react';
 import * as yup from 'yup';
 import { Ionicons } from '@expo/vector-icons';
+//import { Dropdown } from 'react-native-material-dropdown';
 
 
 
@@ -59,7 +60,11 @@ const validForm = yup.object({
 
 
 export default function Signup({navigation}) {
+// new 
 
+
+
+// new 
  const handleLogin = () => {
   navigation.navigate('Login');
 }
@@ -67,6 +72,11 @@ export default function Signup({navigation}) {
   return (
 
     <ScrollView>
+      <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+      
+    }}>
+
     <View style={globalStyles.container1}>
     
       <Formik
@@ -101,7 +111,7 @@ export default function Signup({navigation}) {
             
             <View style={{flexDirection: "row"}}>
 
-            
+           
             <TextInput
               style={globalStyles.nameRow}
               placeholder='First Name'
@@ -188,6 +198,7 @@ export default function Signup({navigation}) {
             </View>
 
             <Text>Blood Type</Text>
+        <View> 
         <Picker
           selectedValue={props.values.Blood_type}
           style={{ height: 50,   padding: 10}}
@@ -206,6 +217,7 @@ export default function Signup({navigation}) {
           <Picker.Item label="AB negative" value="AB-" />
           
         </Picker>
+        </View>
         <Text style={globalStyles.errorRow}>{props.touched.Blood_type && props.errors.Blood_type}</Text>
 
         <Text>User Type</Text>
@@ -270,6 +282,7 @@ export default function Signup({navigation}) {
         )}
       </Formik> 
     </View>
+    </TouchableWithoutFeedback>
     </ScrollView>
   );
 }

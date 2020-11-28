@@ -47,7 +47,7 @@ export default function StatsResults({route, navigation}) {
       
       var sum =  data.datasets[0].data.reduce((a, b) => a + b, 0);
 
-
+      
 
 
      return (
@@ -70,6 +70,7 @@ export default function StatsResults({route, navigation}) {
                 borderRadius: 16,
               }}
         />
+
 
 <Text style={globalStyles.graphHeader}>Blood Group Percentage</Text>
       <PieChart

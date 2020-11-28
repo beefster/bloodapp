@@ -35,7 +35,7 @@ export const globalStyles = StyleSheet.create({
       borderColor: '#ddd',
       borderRadius: 6,
       flexDirection: 'row',
-      padding: 5,
+      padding: 0,
       marginLeft: 0,
       marginRight: 0,
       
@@ -132,6 +132,15 @@ export const globalStyles = StyleSheet.create({
       padding: 8,
       alignItems:"center",
       justifyContent:"center",
+    },
+    l1:{
+      width: '80%',
+      fontSize: 30,
+      
+      marginTop:10,
+      marginBottom: 3,
+     // padding: 8,
+      
     },
   
     logintext: {
