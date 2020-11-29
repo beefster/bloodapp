@@ -12,7 +12,12 @@ const Stack = createStackNavigator();
 const RequestsStackNavigator = () => {
   return (
     <Stack.Navigator >
-      <Stack.Screen name="Requests" component={Requests}  />
+      <Stack.Screen name="Requests" component={Requests} options = {{
+        title: "",
+        headerLeft: false,
+        headerShown: false,
+        
+      }}  />
       <Stack.Screen name="Maps" component={Maps} />
     </Stack.Navigator>
   );

@@ -11,16 +11,22 @@ const Stack = createStackNavigator();
 const screenOptionStyle = {
   headerStyle: {
     backgroundColor: "white",
-   // backgroundColor: "#9AC4F8",
+  
   },
+  title: "as", 
   headerTintColor: "white",
   headerBackTitle: "Back",
+  headerLeft: false
 };
 
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Search" component={Search}  />
+    <Stack.Navigator >
+      <Stack.Screen name="Search" component={Search}  options = {{
+        title: "",
+        headerLeft: false,
+        headerShown: false
+      }}/>
       <Stack.Screen name="Results" component={Results} />
       <Stack.Screen name="Maps" component={Maps} />
     </Stack.Navigator>

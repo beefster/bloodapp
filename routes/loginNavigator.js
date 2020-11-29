@@ -26,7 +26,7 @@ export default function BottomTabNavigator({route, navigation}) {
   return (
       <Tab.Navigator>
         <Tab.Screen name="Login" children={() => <Home navigation={navigation} profile={route.params.profile}/>} options={{
-          
+          title: "as",
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />

@@ -101,7 +101,10 @@ export default function Search({ navigation }) {
       
     }}> 
     <View style={globalStyles.container1}>
+      
+    <View style={globalStyles.header}>
 
+    </View>
 
 
 

@@ -1,5 +1,6 @@
 // global styles for our app
 import { StyleSheet, Dimensions } from 'react-native';
+import { Header } from 'react-navigation-stack';
 
 export const globalStyles = StyleSheet.create({
     container: {
@@ -140,6 +141,11 @@ export const globalStyles = StyleSheet.create({
       marginTop:10,
       marginBottom: 3,
      // padding: 8,
+      
+    },
+    header:{
+      width: '100%',
+      height: "5%",
       
     },
   

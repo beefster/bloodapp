@@ -114,6 +114,9 @@ export default function Requests({navigation}) {
    
        
        <View style={globalStyles.container1}>
+         <View style={globalStyles.header}>
+
+        </View>
          
          <View style={{flexDirection: 'row'}}>
             <View style={globalStyles.requestsRow}>

@@ -21,9 +21,17 @@ const Stack = createStackNavigator();
 const FirstStackNavigator = () => {
   return (
     <Stack.Navigator >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Login" component={BottomTabNavigator} />
+      <Stack.Screen name="Home" component={Home} options = {{
+        title: "",
+      }}  />
+      <Stack.Screen name="Signup" component={Signup}  options = {{
+        title: "Sign Up"
+      }} />
+      <Stack.Screen name="Login" component={BottomTabNavigator} options = {{
+        headerLeft: false,
+       headerShown: false,
+        title: ""
+      }} />
       <Stack.Screen name="Success" component={Success} />
       
     </Stack.Navigator>

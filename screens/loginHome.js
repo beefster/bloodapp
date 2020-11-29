@@ -142,6 +142,9 @@ export default function Home1(props) {
       
     }}>
      <View style={globalStyles.container1}>
+       <View style={globalStyles.header}>
+
+       </View>
       <Text style = {globalStyles.greeting}>Welcome, {props.profile.fname}!</Text>
       <View style={{flexDirection: "row"}}>
       <TouchableOpacity >

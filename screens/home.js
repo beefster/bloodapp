@@ -91,6 +91,7 @@ export default function Home({navigation}) {
       Keyboard.dismiss();
       
     }}>
+      
         <View style={globalStyles.container}>
          
             <Image

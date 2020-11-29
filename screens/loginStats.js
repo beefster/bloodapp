@@ -128,7 +128,9 @@ export default function Stats({ navigation }) {
       
     }}>
     <View style={globalStyles.container1}>
+    <View style={globalStyles.header}>
 
+    </View>
 
 
 
