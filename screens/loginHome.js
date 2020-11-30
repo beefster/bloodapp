@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { Ionicons } from '@expo/vector-icons';
 import DialogInput from 'react-native-dialog-input';
 import { Feather } from '@expo/vector-icons';
+import * as SecureStore from 'expo-secure-store';
 
 export default function Home1(props) {
 
@@ -31,6 +32,7 @@ export default function Home1(props) {
 
     const [newPass, setNewPass] = useState("");
     const [cnewPass, setCNewPass] = useState("");
+    const [currentPass, setCurrentPass] = useState("");
 
     const [newBlood, setNewBlood] = useState(userInfo[0].blood);
     const [newCity, setNewCity] = useState(userInfo[0].city);
@@ -40,8 +42,6 @@ export default function Home1(props) {
     const [newUtype, setNewUtype] = useState(userInfo[0].usertype);
 
     const [input, setInput] = useState("");
-    var userpass = "1234";
-    const [currentPass, setCurrentPass] = useState("");
     
     const handleButton = () => {
       props.navigation.navigate('Home');
@@ -79,7 +79,7 @@ export default function Home1(props) {
 
 
       //Update button calls this
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
 
       if (newBlood != "A+" &&
       newBlood != "A-" &&
@@ -119,25 +119,70 @@ export default function Home1(props) {
         Alert.alert('Input Error' , 'Password/Confirm password  either don\'t match or have length less than 8');
       }
 
-      else {
-        if (newBlood == userInfo[0].blood && newAddress == userInfo[0].address && newCity == userInfo[0].city
-          && newState == userInfo[0].state && newPass == "" && cnewPass == ""){
+      else if (newBlood == userInfo[0].blood && newAddress == userInfo[0].address && newCity == userInfo[0].city
+        && newState == userInfo[0].state && newPass == "" && cnewPass == ""){
             Alert.alert('Change Info' , 'Nothing to change');
-          }
-  
-      //  else if (showPassword == false){
-       //   setPassword(true);
-       // }
-        //else{
-
-        //Alert.alert('Information Updated' , 'Success!');
-       // }
       }
+
+      else{
+        var updateBody = {}
+        var profileChange = {}
+        if(newBlood != userInfo[0].blood) profileChange.bloodType = newBlood
+        if(newAddress != userInfo[0].address) profileChange.address = newAddress
+        if(newCity != userInfo[0].city) profileChange.city = newCity
+        if(newState != userInfo[0].state) profileChange.state = newState
+        updateBody.profileChange = profileChange
+
+        if(newPass.length > 0){
+          updateBody.passChange={
+            old: currentPass,
+            new: newPass,
+          }
+        }
+
+        try{
+          const token = await SecureStore.getItemAsync('token');
+          fetch('http://192.168.1.7:907/api/updateProfile', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type':'application/json',
+              'Authorization':'Bearer ' + token
+            },
+            body: JSON.stringify(updateBody)
+          }).then((response) => response.json()).then((responsejson) => {
+            console.log(responsejson)
+            if (responsejson.code == 200){
+              Alert.alert("Success!\n"+responsejson.success);
+            } else {
+              Alert.alert(responsejson.error);
+            }
+          });
+        } catch(e) {
+          console.log(e);
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
+  }
 
     return (
       <ScrollView>
-       <TouchableWithoutFeedback onPress={() => {
+       <TouchableWithoutFeedback style = {globalStyles.scrollPad} onPress={() => {
       Keyboard.dismiss();
       
     }}>
@@ -315,7 +360,7 @@ export default function Home1(props) {
               </View>
               </View> 
 
-              <Text>*If you don't want to change your password, then leave both password fields blank  </Text>
+              <Text>*If you don't want to change your password, leave all password fields blank  </Text>
 
               <View style={{flexDirection: "row"}}>
               <View style = {globalStyles.container1}>
@@ -363,27 +408,20 @@ export default function Home1(props) {
               </View>
 
               
-              </View> 
-
-             
-
-              <Button onPress={ handleUpdate} title="Update" />
+              </View>
+              <View style = {globalStyles.scrollPad}>
+              <Button onPress={handleUpdate} title="Update"/>
+              </View>
               </View>
               // end profile
 
-
               : null
 
-
-
-
           }
-
-        
-        
 
      </View>
     </TouchableWithoutFeedback> 
      </ScrollView>
      );
 }
+

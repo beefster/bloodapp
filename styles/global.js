@@ -256,7 +256,9 @@ export const globalStyles = StyleSheet.create({
       marginTop: 16,
       color: "green"
     },
-    
+    scrollPad: {
+      paddingBottom: 100
+    }
 
     
     
