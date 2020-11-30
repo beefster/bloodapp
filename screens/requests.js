@@ -1,37 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import  { useState } from 'react';
 import { Card } from 'react-native-paper';
+import { Feather } from '@expo/vector-icons';
 import * as SecureStore from 'expo-secure-store';
-
-const getRequests = async () => {
-  try{
-    const token = await SecureStore.getItemAsync('token');
-    fetch('http://192.168.1.7:907/api/getRequests', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type':'application/json',
-        'Authorization':'Bearer ' + token
-      }
-    }).then((response) => response.json()).then((responsejson) => {
-      if (responsejson.code == 200){
-        console.log(responsejson.receivedRequests)
-        //array of incoming
-
-        console.log(responsejson.sentRequests)
-        //array of outgoing
-
-      } else {
-        console.log(responsejson);
-      }
-    }).done()
-  } catch(e) {
-    console.log(e);
-  }
-}
-
 
 export default function Requests({navigation}) {
     
@@ -41,18 +14,68 @@ export default function Requests({navigation}) {
       const [showReceived, setReceived] = useState(false);
       const [showAvailable, setAvailable] = useState(false);
 
+      const getRequests = async (status, setter) => {
+        try{
+          const token = await SecureStore.getItemAsync('token');
+          const response = await fetch('http://192.168.1.7:907/api/getRequests', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type':'application/json',
+              'Authorization':'Bearer ' + token
+            },
+            body:JSON.stringify({
+              'status':status
+            })
+          });
+          const responsejson = await response.json();
+          //console.log(responsejson.requests)
+          setter(responsejson.requests)
+        } catch(e) {
+          console.log(e);
+        }
+      }
+
+      const approveRequest = async (id) => {
+        try{
+          const token = await SecureStore.getItemAsync('token');
+          const response = await fetch('http://192.168.1.7:907/api/approveRequest', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type':'application/json',
+              'Authorization':'Bearer ' + token
+            },
+            body:JSON.stringify({
+              'requestID':id
+            })
+          });
+          const responsejson = await response.json();
+          //console.log(responsejson.requests)
+          if(responsejson.code == '200') Alert.alert('Success', 'Request Approved')
+          else Alert.alert('Error', responsejson.error)
+
+          getRequests('received', setReceivedRequests)
+
+        } catch(e) {
+          console.log(e);
+        }
+      }
+
       const handleSent = () => {
+        
+        getRequests('sent', setSentRequests);
         if (showSent == false){
             setApproved(false);
             setReceived(false);
             setAvailable(false);
             setSent(true);
-            
         }
 
     }
 
       const handleApproved = () => {
+        getRequests('approved', setApprovedRequests);
         if (showApproved == false){
             setSent(false);
             setReceived(false);
@@ -64,6 +87,7 @@ export default function Requests({navigation}) {
       }
 
       const handleReceived = () => {
+        getRequests('received', setReceivedRequests)
         if (showReceived == false){
             setSent(false);
             setApproved(false);
@@ -75,6 +99,7 @@ export default function Requests({navigation}) {
       }
 
       const handleAvailable = () => {
+        getRequests('available', setAvailableRequests)
         if (showAvailable == false){
             setSent(false);
             setApproved(false);
@@ -86,29 +111,17 @@ export default function Requests({navigation}) {
       }
 
 
-      const [sentRequests, setSentRequests] = useState([
-        { uname: 'mabajwa',  blood: "O+", 
-         city: "Anchorage", state: "Alaska", country: "United States", id: 1 },
-        { uname: 'Troll',  blood: "A+", 
-         city: "Anchorage", state: "Alaska", country: "United States", id: 2 }
-      ])
+      const [sentRequests, setSentRequests] = useState([])
+      const [approvedRequests, setApprovedRequests] = useState([])
+      const [receivedRequests, setReceivedRequests] = useState([])
+      const [availableRequests, setAvailableRequests] = useState([])
 
-
-      const [approvedRequests, setApprovedRequest] = useState([
-        { uname: "arzak.bajwa", fname: 'Arzak', lname: 'Bajwa', blood: "O+", 
-        address: "123 street apt. 7", city: "Anchorage", 
-        state: "Alaska", country: "United States", email: "mabajwa2@gmail.com", id: '1' },
-        { uname: "johnD", fname: 'John', lname: 'Doe', blood: "A+",
-         address: "123 Vanguard Dr apt. 8", city: "Anchorage", 
-         state: "Alaska", country: "United States", email: "jd2@gmail.com", id: '2' }
-      ])
-
-      const [receivedRequests, setReceivedRequests] = useState([
-        { uname: 'mabajwa',  blood: "O+", 
-         city: "Anchorage", state: "Alaska", country: "United States", id: 1 },
-        { uname: 'Troll',  blood: "A+", 
-         city: "Anchorage", state: "Alaska", country: "United States", id: 2 }
-      ])
+      useEffect(() => {
+        getRequests('sent', setSentRequests);
+        getRequests('approved', setApprovedRequests);
+        getRequests('received', setReceivedRequests);
+        getRequests('available', setAvailableRequests);
+      }, [])
    
      return (
    
@@ -211,7 +224,7 @@ export default function Requests({navigation}) {
 
             <View style={globalStyles.container2}>
 
-                <Text style={globalStyles.greeting2}>Total Approved Requests: {sentRequests.length}</Text>
+                <Text style={globalStyles.greeting2}>Total Approved Requests: {approvedRequests.length}</Text>
 
                 <FlatList
 
@@ -306,7 +319,7 @@ export default function Requests({navigation}) {
                     <Text >{item.country}</Text>
                     </View>
 
-                    <Button onPress={()=>{ Alert.alert('Request Approved' , 'For: '.concat(item.uname).concat("\nBlood Requested: ").concat(item.blood));} } title="Approve Request" />
+                    <Button onPress={() => {approveRequest(item.id)}} title="Approve Request" />
             
                     </Card>
                   )} />
@@ -329,12 +342,12 @@ export default function Requests({navigation}) {
 
             <View style={globalStyles.container2}>
 
-                <Text style={globalStyles.greeting2}>Total Available Donors: {sentRequests.length}</Text>
+                <Text style={globalStyles.greeting2}>Total Available Donors: {availableRequests.length}</Text>
 
                 <FlatList
 
                 keyExtractor={(item) => item.id.toString()}
-                data={approvedRequests}
+                data={availableRequests}
                 renderItem={({ item }) => (
                 <Card style={globalStyles.requestsCard}>
                     <View style={globalStyles.resultsRow}>
