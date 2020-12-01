@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, Alert, TouchableWithoutFeedback, Keyboard  } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, Alert, TouchableWithoutFeedback, Keyboard  } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 //import { SearchStack } from "../routes/homeStack";
@@ -30,6 +30,7 @@ export default function Stats({ navigation }) {
   const [sc, setSC] = useState(false);  // state and country
   const [c, setC] = useState(false);    //country
   const [pick, setPick] = useState("");
+  const [loading, setLoading] = useState(false);
   const data = [
     {
       label: "City, State & Country"
@@ -107,6 +108,7 @@ export default function Stats({ navigation }) {
     }
 
     else {
+      setLoading(true);
     fetch('http://192.168.1.7:907/api/stats', {
       method: 'POST',
       headers: {
@@ -115,7 +117,9 @@ export default function Stats({ navigation }) {
       },
       body: JSON.stringify(values)
     }).then((response) => response.json()).then((result) => {
-      navigation.navigate('Results', result.stats)
+      setLoading(false);
+      navigation.navigate('Results', result.stats);
+
     })
   }
 }
@@ -240,6 +244,15 @@ export default function Stats({ navigation }) {
             
             : null
               }
+
+          
+          { 
+            loading ?
+           
+            <ActivityIndicator size = "large" color = 'green'/> : null
+
+          }
+          <Text></Text>
 
             
             <Button color='blue' title="Search" onPress={props.handleSubmit} />

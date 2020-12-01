@@ -46,6 +46,7 @@ export default function Results({ route, navigation }) {
   return (
 
     <View style={globalStyles.container2}>
+      <Text style={globalStyles.searchScreen}>Total Donors Found: {temp1.length}</Text>
 
       <FlatList
 
@@ -57,22 +58,16 @@ export default function Results({ route, navigation }) {
               <Text >Username: </Text>
               <Text >{item.fname}</Text>
 
-              <Text style={globalStyles.sentRequestsText}>Blood Type :</Text>
-              <Text >{item.blood}</Text>
+              
             </View>
+            <View style={globalStyles.resultsRow}> 
 
+            <Text>Blood Type :  {item.blood}</Text>
             
-            {/* <View style={globalStyles.resultsRow}>
-              <Text >City: </Text>
-              <Text >{item.city}</Text>
             
-              <Text style={globalStyles.sentRequestsText}>State: </Text>
-              <Text >{item.state}</Text>
-            </View>
-            <View style={globalStyles.resultsRow}>
-              <Text >Country: </Text>
-              <Text >{item.country}</Text>
-            </View> */}
+            </View> 
+            <Text></Text>
+
             <Button onPress={() => {handleRequest(item.id)}}
               title="Send Request" />
           </Card>

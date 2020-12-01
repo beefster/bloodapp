@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, TouchableOpacity, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, TouchableOpacity, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import  { useState } from 'react';
@@ -40,6 +40,7 @@ export default function Home1(props) {
     const [newState, setNewState] = useState(userInfo[0].state);
     const [newCountry, setNewCountry] = useState(userInfo[0].country);
     const [newUtype, setNewUtype] = useState(userInfo[0].usertype);
+    const [loading, setLoading] = useState(false);
 
     const [input, setInput] = useState("");
     
@@ -125,6 +126,7 @@ export default function Home1(props) {
       }
 
       else{
+        setLoading(true);
         var updateBody = {}
         var profileChange = {}
         if(newBlood != userInfo[0].blood) profileChange.bloodType = newBlood
@@ -157,6 +159,7 @@ export default function Home1(props) {
             } else {
               Alert.alert(responsejson.error);
             }
+            setLoading(false);
           });
         } catch(e) {
           console.log(e);
@@ -191,10 +194,13 @@ export default function Home1(props) {
 
        </View>
       <Text style = {globalStyles.greeting}>Welcome, {props.profile.fname}!</Text>
+      <Text></Text>
+        
+      
       <View style={{flexDirection: "row"}}>
-      <TouchableOpacity >
-                      <Text style = {globalStyles.requestsText} >View/Change Your Profile </Text>
-      </TouchableOpacity>
+      
+      <Text style = {globalStyles.requestsText} >View/Change Your Profile </Text>
+      
 
       <TouchableOpacity onPress={handleButton}>
                       <Text style = {globalStyles.requestsText} >Logout </Text>
@@ -410,7 +416,15 @@ export default function Home1(props) {
               
               </View>
               <View style = {globalStyles.scrollPad}>
+                { 
+                  loading ?
+           
+                  <ActivityIndicator size = "large" color = 'green'/> : null
+
+                }
+                <Text></Text>
               <Button onPress={handleUpdate} title="Update"/>
+
               </View>
               </View>
               // end profile

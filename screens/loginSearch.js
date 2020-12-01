@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 //import {Picker} from '@react-native-community/picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
@@ -37,6 +37,7 @@ const validForm = yup.object({
 
 
 export default function Search({ navigation }) {
+  const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [people, setPeople] = useState([
     { fname: 'Arzak', lname: 'Bajwa', blood: "O+", address: "123 street apt. 7", city: "Anchorage", state: "Alaska", country: "United States of America", email: "mabajwa2@gmail.com", id: '1' },
@@ -51,6 +52,7 @@ export default function Search({ navigation }) {
 
   //Search submit calls this
   const handleSearch = async (values) => {
+    setLoading(true);
     var token;
     try{
       token = await SecureStore.getItemAsync('token');
@@ -95,10 +97,14 @@ export default function Search({ navigation }) {
         setData(temp);
         //console.log(data.length);
         //console.log(temp);
+        setLoading(false);
         navigation.navigate('Results', { data1: temp });
 
 
-      } else console.log(result); //server error
+      } else { 
+      console.log(result);
+      setLoading(false);
+    } //server error
     });
   }
 
@@ -204,6 +210,13 @@ export default function Search({ navigation }) {
             </Picker>
 
 
+            { 
+            loading ?
+           
+            <ActivityIndicator size = "large" color = 'green'/> : null
+
+          }
+            <Text></Text>
             <Button color='blue' title="Search" onPress={props.handleSubmit} />
             
 

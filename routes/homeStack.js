@@ -23,6 +23,8 @@ const FirstStackNavigator = () => {
     <Stack.Navigator >
       <Stack.Screen name="Home" component={Home} options = {{
         title: "",
+        headerShown: false,
+        
       }}  />
       <Stack.Screen name="Signup" component={Signup}  options = {{
         title: "Sign Up"

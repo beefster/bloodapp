@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList, Alert } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView,TouchableOpacity,FlatList, Alert } from 'react-native';
 import { globalStyles } from '../styles/global';
 import  { useState } from 'react';
 import { Card } from 'react-native-paper';
@@ -260,7 +260,7 @@ export default function Requests({navigation}) {
             
                     
                     
-                    <Text >State: </Text>
+                    <Text >        State: </Text>
                     <Text >{item.state}</Text>   
                     <Text style={globalStyles.sentRequestsText}>Country: </Text>
                     <Text >{item.country}</Text>

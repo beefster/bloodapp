@@ -55,7 +55,7 @@ export default function StatsResults({route, navigation}) {
         
        <View style={globalStyles.graphView}>
          <ScrollView>
-         <Text style={globalStyles.greeting1}>Total Donors: {sum}</Text>
+         <Text style={globalStyles.greeting1}>Total Donors Found: {sum}</Text>
          <Text style={globalStyles.graphHeader}>Number of Donors Per Blood Group</Text>
 
          <BarChart
