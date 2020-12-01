@@ -178,6 +178,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
+                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
                     </View>
 
 
@@ -235,6 +236,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
+                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
                     </View>
 
 
@@ -293,6 +295,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
+                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
                     </View>
 
 
@@ -353,6 +356,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
+                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
                     </View>
 
 
