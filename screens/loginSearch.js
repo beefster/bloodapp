@@ -217,7 +217,7 @@ export default function Search({ navigation }) {
 
           }
             <Text></Text>
-            <Button color='blue' title="Search" onPress={props.handleSubmit} />
+            <Button  title="Search" onPress={props.handleSubmit} />
             
 
 

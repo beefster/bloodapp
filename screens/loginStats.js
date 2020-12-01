@@ -257,7 +257,7 @@ export default function Stats({ navigation }) {
           <Text></Text>
 
             
-            <Button color='blue' title="Search" onPress={props.handleSubmit} />
+            <Button  title="Search" onPress={props.handleSubmit} />
             
 
 

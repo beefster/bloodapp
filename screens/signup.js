@@ -288,7 +288,7 @@ const [loading, setLoading] = useState(false);
 
           }
            
-            <Button color='blue' title="Submit" onPress={props.handleSubmit} />
+            <Button  title="Submit" onPress={props.handleSubmit} />
             {/* <Button color='green' title="Dashboard" onPress={handleLogin} /> */}
           </View>
         )}
