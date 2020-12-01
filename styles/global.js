@@ -5,16 +5,22 @@ import { Header } from 'react-navigation-stack';
 export const globalStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor:  '#fff',
+      backgroundColor:  'white',
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'column',
+      height: Dimensions.get('window').height,
+      width: Dimensions.get('window').width,
+
+      
       
     },
     container1: {
       flex: 1,
       padding: 10,
       marginTop: 5,
+      backgroundColor:  'white',
+      
       
     },
     container2: {
@@ -47,9 +53,9 @@ export const globalStyles = StyleSheet.create({
     requestsText: {
       fontSize: 15,
       color: 'black',
-      padding: 10,
-      marginLeft: 10,
-      marginRight: 10,
+      padding: 5,
+      marginLeft: 5,
+      marginRight: 5,
       
     },
     resultsRowText: {

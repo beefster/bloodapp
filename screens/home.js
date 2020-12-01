@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image, ScrollView, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
+import RNPickerSelect from 'react-native-picker-select';
 
 import * as SecureStore from 'expo-secure-store';
 
@@ -30,8 +31,7 @@ export default function Home({navigation}) {
           try{
             SecureStore.setItemAsync('token', responsejson.token)
             setLoading(false);
-            setEmail("");
-            setPass("");
+      
             navigation.navigate('Login', { profile: responsejson.profile });
           }catch(e){
             console.log(e)
@@ -100,6 +100,7 @@ export default function Home({navigation}) {
       
     }}>
       
+        
       
         <View style={globalStyles.container}>
 
@@ -152,6 +153,13 @@ export default function Home({navigation}) {
             <View style = {globalStyles.l1}>
             <Button  onPress={handleSignup} title="SIGN UP" />
             </View >
+            
+
+
+            
+            
+
+            
               
 
         <StatusBar style="auto" />

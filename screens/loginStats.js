@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, Alert, TouchableWithoutFeedback, Keyboard  } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button,  ScrollView, Modal, FlatList, Alert, TouchableWithoutFeedback, Keyboard  } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 //import { SearchStack } from "../routes/homeStack";
@@ -8,6 +8,8 @@ import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import RadioButtonRN from 'radio-buttons-react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 import * as yup from 'yup';
 

@@ -126,12 +126,13 @@ export default function Requests({navigation}) {
      return (
    
        
-       <View style={globalStyles.container1}>
+       <View style={globalStyles.container2}>
          <View style={globalStyles.header}>
 
         </View>
          
          <View style={{flexDirection: 'row'}}>
+           
             <View style={globalStyles.requestsRow}>
 
          
@@ -178,7 +179,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
-                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
+                    <Text style={globalStyles.sentRequestsText}>Sent {item.age} </Text>
                     </View>
 
 
@@ -236,7 +237,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
-                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
+                    <Text style={globalStyles.sentRequestsText}>Approved {item.age} </Text>
                     </View>
 
 
@@ -295,7 +296,7 @@ export default function Requests({navigation}) {
                     <View style={globalStyles.resultsRow}>
                     <Text >Request id: </Text>
                     <Text >{item.id}</Text>
-                    <Text style={globalStyles.sentRequestsText}>Made {item.age} </Text>
+                    <Text style={globalStyles.sentRequestsText}>Received {item.age} </Text>
                     </View>
 
 

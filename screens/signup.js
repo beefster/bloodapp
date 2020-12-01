@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { Formik } from 'formik';
 import  { useState } from 'react';
 import * as yup from 'yup';
 import { Ionicons } from '@expo/vector-icons';
 //import { Dropdown } from 'react-native-material-dropdown';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 
 
@@ -62,7 +64,7 @@ const validForm = yup.object({
 export default function Signup({navigation}) {
 // new 
 
-
+const [loading, setLoading] = useState(false);
 
 // new 
  const handleLogin = () => {
@@ -85,6 +87,7 @@ export default function Signup({navigation}) {
         validationSchema={validForm}
         onSubmit={(values, actions) => {
           console.log(JSON.stringify(values));
+          setLoading(true);
           
           //fetch('http://localhost:907/api/register', {
             fetch('http://192.168.1.7:907/api/register', {
@@ -97,9 +100,11 @@ export default function Signup({navigation}) {
          }).then((response) => response.json()).then((json) => {
            console.log(json);
            if(json.code == 200){
+             setLoading(false);
              navigation.navigate('Success');
            }else {
              console.log(json);
+             setLoading(false);
              Alert.alert('Sign up Error' , 'Invalid Email or Username');
            }
 
@@ -199,40 +204,42 @@ export default function Signup({navigation}) {
 
             <Text>Blood Type</Text>
         <View> 
-        <Picker
-          selectedValue={props.values.Blood_type}
-          style={{ height: 50,   padding: 10}}
-          onValueChange={props.handleChange('Blood_type')}
-          value = {props.values.Blood_type}
-          onBlur={props.handleBlur('Blood_type')} 
-          >
-          <Picker.Item label="Unknown" value="Unknown" />
-          <Picker.Item label="A positive" value="A+" />
-          <Picker.Item label="A negative" value="A-" />
-          <Picker.Item label="B positive" value="B+" />
-          <Picker.Item label="B negative" value="B-" />
-          <Picker.Item label="O positive" value="O+" />
-          <Picker.Item label="O negative" value="O-" />
-          <Picker.Item label="AB positive" value="AB+" />
-          <Picker.Item label="AB negative" value="AB-" />
-          
-        </Picker>
+        <RNPickerSelect
+            placeholder = {{}}
+            onValueChange={props.handleChange('Blood_type')}
+            value = {props.values.Blood_type}
+            onBlur={props.handleBlur('Blood_type')}
+            items={[
+                { label:"Unknown" ,value:"Unknown"},
+                { label: "A positive", value:"A+" },
+                { label: "A negative" , value:"A-" },
+                { label:"B positive" ,value:"B+" },
+                { label:"B negative" ,value:"B-" },
+                { label:"O positive" ,value:"O+" },
+                { label:"O negative" ,value:"O-" },
+                { label:"AB positive" ,value:"AB+" },
+                { label:"AB negative" ,value:"AB-"},
+            ]}
+        />
+       
         </View>
         <Text style={globalStyles.errorRow}>{props.touched.Blood_type && props.errors.Blood_type}</Text>
-
+       
         <Text>User Type</Text>
-        <Picker
-          selectedValue={props.values.User_type}
-          style={{ height: 50,   padding: 10}}
-          onValueChange={props.handleChange('User_type')}
-          value = {props.values.User_type}
-          onBlur={props.handleBlur('User_typee')} 
-          >
-          <Picker.Item label="Donor" value="Donor" />
-          <Picker.Item label="Recipient" value="Recipient" />
-          
-          
-        </Picker>
+
+        <RNPickerSelect
+            placeholder = {{}}
+            onValueChange={props.handleChange('User_type')}
+            value = {props.values.User_type}
+            onBlur={props.handleBlur('User_type')}
+            items={[
+                { label:"Donor" ,value:"Donor"},
+                { label:"Recipient" ,value:"Recipient" },
+               
+            ]}
+        />
+
+        
         <Text style={globalStyles.errorRow}>{props.touched.User_type && props.errors.User_type}</Text>
             <TextInput 
               style={globalStyles.signupinput}
@@ -274,7 +281,12 @@ export default function Signup({navigation}) {
             />
 
             <Text style={globalStyles.errorRow}>{props.touched.Confirm_password && props.errors.Confirm_password}</Text>
-        
+            { 
+            loading ?
+           
+            <ActivityIndicator size = "large" color = 'green'/> : null
+
+          }
            
             <Button color='blue' title="Submit" onPress={props.handleSubmit} />
             {/* <Button color='green' title="Dashboard" onPress={handleLogin} /> */}

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Text, TextInput, Button,  ScrollView, Modal, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 //import {Picker} from '@react-native-community/picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
@@ -8,6 +8,8 @@ import { Card } from 'react-native-paper';
 //import { SearchStack } from "../routes/homeStack";
 //import Results from "../screens/searchResults";
 import * as SecureStore from 'expo-secure-store';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 
 import { globalStyles } from '../styles/global';
@@ -189,25 +191,23 @@ export default function Search({ navigation }) {
 
 
             <Text>Blood Type</Text>
-            <Picker
-              selectedValue={props.values.Blood_type}
-              style={{ height: 50, padding: 10 }}
-              //onValueChange={(bvalue) => setBlood(bvalue)}
-              onValueChange={props.handleChange('Blood_type')}
-              value={props.values.Blood_type}
-              onBlur={props.handleBlur('Blood_type')}
-            >
-              <Picker.Item label="Any" value="" />
-              <Picker.Item label="A positive" value="A+" />
-              <Picker.Item label="A negative" value="A-" />
-              <Picker.Item label="B positive" value="B+" />
-              <Picker.Item label="B negative" value="B-" />
-              <Picker.Item label="O positive" value="O+" />
-              <Picker.Item label="O negative" value="O-" />
-              <Picker.Item label="AB positive" value="AB+" />
-              <Picker.Item label="AB negative" value="AB-" />
-
-            </Picker>
+            <RNPickerSelect
+            placeholder = {{}}
+            onValueChange={props.handleChange('Blood_type')}
+            value = {props.values.Blood_type}
+            onBlur={props.handleBlur('Blood_type')}
+            items={[
+                { label:"Any" ,value:""},
+                { label: "A positive", value:"A+" },
+                { label: "A negative" , value:"A-" },
+                { label:"B positive" ,value:"B+" },
+                { label:"B negative" ,value:"B-" },
+                { label:"O positive" ,value:"O+" },
+                { label:"O negative" ,value:"O-" },
+                { label:"AB positive" ,value:"AB+" },
+                { label:"AB negative" ,value:"AB-"},
+            ]}
+        />
 
 
             { 
