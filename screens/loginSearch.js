@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker, ScrollView, Modal, FlatList, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 //import {Picker} from '@react-native-community/picker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-paper';
 //import Modal from 'modal-react-native-web';
 //import { SearchStack } from "../routes/homeStack";
 //import Results from "../screens/searchResults";
+import * as SecureStore from 'expo-secure-store';
 
 
 import { globalStyles } from '../styles/global';
@@ -49,12 +50,20 @@ export default function Search({ navigation }) {
   }
 
   //Search submit calls this
-  const handleSearch = (values) => {
+  const handleSearch = async (values) => {
+    var token;
+    try{
+      token = await SecureStore.getItemAsync('token');
+    } catch(e) {
+      Alert.alert(e)
+      return
+    }
     fetch('http://192.168.1.7:907/api/search', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization':'Bearer ' + token
       },
       body: JSON.stringify(values)
     }).then((response) => response.json()).then((result) => {
