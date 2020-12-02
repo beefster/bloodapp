@@ -80,14 +80,8 @@ export default function Search({ navigation }) {
 
         for (; i < result.records.length; i++) {
           const person = {
-            fname: result.records[i]['firstName'],
-            lname: result.records[i]['lastName'],
+            uname: result.records[i]['userName'],
             blood: result.records[i]['bloodType'],
-            address: result.records[i]['address'],
-            city: result.records[i]['city'],
-            state: result.records[i]['state'],
-            country: result.records[i]['country'],
-            email: result.records[i]['email'],
             id: result.records[i]['UserID']
           }
           //insert person into state?
@@ -145,7 +139,7 @@ export default function Search({ navigation }) {
         onSubmit={(values, actions) => {
 
           ///actions.resetForm();
-          console.log(values);
+          //console.log(values);
           handleSearch(values);
           //navigation.navigate('Success');
 

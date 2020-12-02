@@ -56,7 +56,7 @@ export default function Results({ route, navigation }) {
           <Card style={globalStyles.requestsCard}  >
             <View style={globalStyles.resultsRow}>
               <Text >Username: </Text>
-              <Text >{item.fname}</Text>
+              <Text >{item.uname}</Text>
 
               
             </View>
